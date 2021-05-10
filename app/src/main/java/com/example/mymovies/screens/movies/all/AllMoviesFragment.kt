@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.mymovies.R
+import com.example.mymovies.screens.movies.all.popular.PopularMoviesFragment
+import com.example.mymovies.screens.movies.all.top.TopMoviesFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -31,7 +33,7 @@ class AllMoviesFragment : Fragment() {
         val pagerAdapter = fragmentManager?.let { PagerAdapter(it, lifecycle) }
 
         viewPager.adapter = pagerAdapter
-        pagerAdapter?.update(listOf(NewMoviesFragment(), TopMoviesFragment()))
+        pagerAdapter?.update(listOf(PopularMoviesFragment(), TopMoviesFragment()))
 
         TabLayoutMediator(tabLayout, viewPager) {tab, position ->
             tab.text = tabs[position]

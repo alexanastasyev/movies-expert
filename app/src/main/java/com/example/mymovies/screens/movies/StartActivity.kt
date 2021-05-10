@@ -9,7 +9,7 @@ import com.example.mymovies.screens.movies.all.AllMoviesFragment
 import com.example.mymovies.screens.movies.favorite.FavoriteMoviesFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
+class StartActivity : AppCompatActivity() {
 
     companion object {
         private const val ALL_MOVIES_FRAGMENT_TAG = "ALL MOVIES"
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_start)
 
         findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {

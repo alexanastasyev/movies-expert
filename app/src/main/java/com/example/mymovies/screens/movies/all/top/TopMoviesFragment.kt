@@ -1,4 +1,4 @@
-package com.example.mymovies.screens.movies.all
+package com.example.mymovies.screens.movies.all.top
 
 import android.os.Bundle
 import android.view.LayoutInflater

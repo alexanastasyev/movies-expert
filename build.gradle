@@ -24,3 +24,15 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    materialVersion = "1.3.0"
+    retrofitVersion = "2.9.0"
+    kotlinSerializationConverterVersion = "0.8.0"
+    okHttpVersion = "4.9.0"
+    kotlinSerializationJsonVersion = "1.0.1"
+    gsonVersion = "2.8.6"
+    gsonConverterVersion = "2.9.0"
+    rxJavaVersion = "2.2.21"
+    rxAndroidVersion = "2.1.1"
+}
