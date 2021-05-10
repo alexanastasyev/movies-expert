@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
         showAllMoviesFragment()
     }
 
