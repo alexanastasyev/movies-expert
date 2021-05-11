@@ -17,4 +17,10 @@ interface MovieServiceInterface {
         @Query("api_key") apiKey: String = API_KEY,
         @Query("language") language: String = BASE_LANGUAGE
     ): Call<GetPopularMoviesResponse>
+
+    @GET("movie/top_rated")
+    fun getTopMovies(
+            @Query("api_key") apiKey: String = API_KEY,
+            @Query("language") language: String = BASE_LANGUAGE
+    ): Call<GetPopularMoviesResponse>
 }
