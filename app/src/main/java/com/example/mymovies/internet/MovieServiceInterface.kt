@@ -7,9 +7,14 @@ import retrofit2.http.Query
 
 interface MovieServiceInterface {
 
+    companion object {
+        private const val BASE_LANGUAGE = "ru-RU"
+        private const val API_KEY = "d0c314843449830d4310a88c038551d5"
+    }
+
     @GET("movie/popular")
     fun getPopularMovies(
-        @Query("api_key") apiKey: String = "d0c314843449830d4310a88c038551d5",
-        @Query("language") language: String = "ru-RU"
+        @Query("api_key") apiKey: String = API_KEY,
+        @Query("language") language: String = BASE_LANGUAGE
     ): Call<GetPopularMoviesResponse>
 }

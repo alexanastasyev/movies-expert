@@ -4,4 +4,5 @@
     <string name="movies_favorite">Избранное</string>
     <string name="movies_new">Новые</string>
     <string name="movies_best">Лучшие</string>
+    <string name="error_loading_movies">Error while loading movies</string>
 </resources>

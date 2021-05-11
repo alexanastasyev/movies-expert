@@ -1,14 +1,15 @@
 package com.example.mymovies
 
-import android.graphics.Bitmap
-
 class Movie(
-    private val id: Int,
-    private val name: String,
-    private val author: String,
-    private val year: Int,
-    private val rating: Int, // from 1 to 100
-    private val description: String,
-    private var smallPicture: Bitmap,
-    private var bigPicture: Bitmap
-)
+    val id: Int,
+    val title: String,
+    val date: String,
+    val rating: Int, // from 1 to 100
+    val description: String,
+    var smallPicturePath: String,
+    var bigPicturePath: String
+) {
+    override fun toString(): String {
+        return "Movie(id=$id, title='$title', date='$date', rating=$rating, description='$description', smallPicturePath='$smallPicturePath', bigPicturePath='$bigPicturePath')"
+    }
+}

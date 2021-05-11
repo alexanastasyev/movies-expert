@@ -4,6 +4,6 @@ import com.example.mymovies.Movie
 import com.example.mymovies.internet.ServiceMovie
 
 interface PopularMoviesView {
-    fun showMovies(movies: List<ServiceMovie>)
+    fun showMovies(movies: List<Movie>)
     fun showError()
 }

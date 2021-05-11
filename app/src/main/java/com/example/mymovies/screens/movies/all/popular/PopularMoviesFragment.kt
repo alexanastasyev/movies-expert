@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.mymovies.Movie
 import com.example.mymovies.R
-import com.example.mymovies.internet.ServiceMovie
 
 class PopularMoviesFragment : Fragment(), PopularMoviesView {
 
@@ -32,11 +32,11 @@ class PopularMoviesFragment : Fragment(), PopularMoviesView {
         super.onDestroyView()
     }
 
-    override fun showMovies(movies: List<ServiceMovie>) {
-        (view as TextView).text = movies.map { it.title }.toString()
+    override fun showMovies(movies: List<Movie>) {
+        (view as TextView).text = movies.toString()
     }
 
     override fun showError() {
-        Toast.makeText(view?.context, "Error while loading movies", Toast.LENGTH_SHORT).show()
+        Toast.makeText(view?.context, getString(R.string.error_loading_movies), Toast.LENGTH_SHORT).show()
     }
 }

@@ -13,5 +13,14 @@ class ServiceMovie(
     val description: String,
 
     @SerializedName("vote_average")
-    val rating: Float
+    val rating: Float,
+
+    @SerializedName("release_date")
+    val date: String,
+
+    @SerializedName("poster_path")
+    val smallPicturePath: String,
+
+    @SerializedName("backdrop_path")
+    val bigPicturePath: String
 )
