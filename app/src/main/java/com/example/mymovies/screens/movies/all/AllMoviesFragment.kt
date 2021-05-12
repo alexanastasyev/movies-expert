@@ -30,10 +30,10 @@ class AllMoviesFragment : Fragment() {
         viewPager = view.findViewById(R.id.view_pager)
 
         val tabs: List<String> = listOf(getString(R.string.movies_popular), getString(R.string.movies_best))
-        val pagerAdapter = fragmentManager?.let { PagerAdapter(it, lifecycle) }
+        val pagerAdapter = PagerAdapter(childFragmentManager, lifecycle)
 
         viewPager.adapter = pagerAdapter
-        pagerAdapter?.update(listOf(PopularMoviesFragment(), TopMoviesFragment()))
+        pagerAdapter.update(listOf(PopularMoviesFragment(), TopMoviesFragment()))
 
         TabLayoutMediator(tabLayout, viewPager) {tab, position ->
             tab.text = tabs[position]

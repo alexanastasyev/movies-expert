@@ -36,7 +36,10 @@ class StartActivity : AppCompatActivity() {
                 else -> false
             }
         }
-        showAllMoviesFragment()
+
+        if (savedInstanceState == null) {
+            showAllMoviesFragment()
+        }
     }
 
     private fun showAllMoviesFragment() {
@@ -51,13 +54,14 @@ class StartActivity : AppCompatActivity() {
         val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         if (supportFragmentManager.findFragmentByTag(tag) == null) {
             fragmentTransaction.add(R.id.fragment_container, fragment, tag)
-            //fragmentTransaction.addToBackStack(tag)
+            fragmentTransaction.addToBackStack(tag)
         } else {
             val fragmentToShow = supportFragmentManager.findFragmentByTag(tag)
             if (fragmentToShow != null) {
                 fragmentTransaction.show(fragmentToShow)
             }
         }
+
         when (tag) {
             ALL_MOVIES_FRAGMENT_TAG -> {
                 hideFragmentByTag(fragmentTransaction, FAVORITE_MOVIES_FRAGMENT_TAG)
@@ -66,7 +70,7 @@ class StartActivity : AppCompatActivity() {
                 hideFragmentByTag(fragmentTransaction, ALL_MOVIES_FRAGMENT_TAG)
             }
         }
-        fragmentTransaction.commitNow()
+        fragmentTransaction.commit()
     }
 
     private fun hideFragmentByTag(fragmentTransaction: FragmentTransaction, tag: String) {
