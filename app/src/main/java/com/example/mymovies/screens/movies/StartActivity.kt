@@ -1,13 +1,14 @@
 package com.example.mymovies.screens.movies
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.mymovies.R
 import com.example.mymovies.screens.movies.all.AllMoviesFragment
 import com.example.mymovies.screens.movies.favorite.FavoriteMoviesFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class StartActivity : AppCompatActivity() {
 
@@ -16,7 +17,7 @@ class StartActivity : AppCompatActivity() {
         private const val FAVORITE_MOVIES_FRAGMENT_TAG = "FAVORITE MOVIES"
     }
 
-    private val allMoviesFragment = AllMoviesFragment()
+    private var allMoviesFragment = AllMoviesFragment()
     private val favoriteMoviesFragment = FavoriteMoviesFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {

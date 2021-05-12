@@ -1,8 +1,6 @@
 package com.example.mymovies.screens.movies.all.popular
 
-import android.content.res.Configuration
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,28 +35,34 @@ class PopularMoviesFragment : Fragment(), PopularMoviesView {
         recyclerView = view.findViewById(R.id.fragment_recycler_movies_new)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         recyclerView.adapter = adapter
+
         presenter.loadNextPage()
 
-//        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//
-//                val totalItemCount = recyclerView.layoutManager?.itemCount
-//                val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-//
-//                if (totalItemCount != null) {
-//                    if (totalItemCount - lastVisibleItemPosition <= PAGINATION_NUMBER) {
-//                        presenter.loadNextPage()
-//                    }
-//                }
-//            }
-//        })
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val totalItemCount = recyclerView.layoutManager?.itemCount
+                val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+
+                if (totalItemCount != null) {
+                    if (totalItemCount - lastVisibleItemPosition <= PAGINATION_NUMBER) {
+                        presenter.loadNextPage()
+                    }
+                }
+            }
+        })
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun onDestroyView() {
+    override fun onDestroy() {
         presenter.disposeDisposable()
-        super.onDestroyView()
+        super.onDestroy()
+    }
+
+        override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
     }
 
     override fun showMovies(movies: List<Movie>) {
