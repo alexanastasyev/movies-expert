@@ -15,17 +15,11 @@ class PopularMoviesPresenter(private val view: PopularMoviesView) {
 
     private val compositeDisposable = CompositeDisposable()
     private var currentPage = 0
-    private var safeCounter = 0
 
     private var isLoading = false
 
     fun loadNextPage() {
         if (isLoading) {
-            safeCounter++
-            if (safeCounter > 100) {
-                isLoading = false
-                safeCounter = 0
-            }
             return
         }
         isLoading = true
@@ -34,7 +28,6 @@ class PopularMoviesPresenter(private val view: PopularMoviesView) {
             view.showError()
             return
         }
-
         val disposable = Single.fromCallable { MovieServer.getPopularMovies(currentPage) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
