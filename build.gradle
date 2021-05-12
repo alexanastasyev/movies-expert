@@ -35,4 +35,5 @@ ext {
     gsonConverterVersion = "2.9.0"
     rxJavaVersion = "2.2.21"
     rxAndroidVersion = "2.1.1"
+    picassoVersion = "2.71828"
 }

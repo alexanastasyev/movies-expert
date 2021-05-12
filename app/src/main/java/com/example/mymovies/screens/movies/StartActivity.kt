@@ -51,7 +51,7 @@ class StartActivity : AppCompatActivity() {
         val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         if (supportFragmentManager.findFragmentByTag(tag) == null) {
             fragmentTransaction.add(R.id.fragment_container, fragment, tag)
-            fragmentTransaction.addToBackStack(tag)
+            //fragmentTransaction.addToBackStack(tag)
         } else {
             val fragmentToShow = supportFragmentManager.findFragmentByTag(tag)
             if (fragmentToShow != null) {
@@ -66,7 +66,7 @@ class StartActivity : AppCompatActivity() {
                 hideFragmentByTag(fragmentTransaction, ALL_MOVIES_FRAGMENT_TAG)
             }
         }
-        fragmentTransaction.commit()
+        fragmentTransaction.commitNow()
     }
 
     private fun hideFragmentByTag(fragmentTransaction: FragmentTransaction, tag: String) {

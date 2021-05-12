@@ -3,8 +3,8 @@ package com.example.mymovies.internet
 import com.example.mymovies.Movie
 
 object MovieConverter {
-    fun convert(serviceMovies: List<ServiceMovie>): List<Movie> {
-       return serviceMovies.map { serviceMovie ->
+    fun convert(serviceMovieModels: List<ServiceMovieModel>): List<Movie> {
+       return serviceMovieModels.map { serviceMovie ->
            Movie(
                    id = serviceMovie.id,
                    title = serviceMovie.title,

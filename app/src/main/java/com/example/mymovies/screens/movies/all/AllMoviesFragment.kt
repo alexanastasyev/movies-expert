@@ -29,7 +29,7 @@ class AllMoviesFragment : Fragment() {
         tabLayout = view.findViewById(R.id.tab_layout)
         viewPager = view.findViewById(R.id.view_pager)
 
-        val tabs: List<String> = listOf(getString(R.string.movies_new), getString(R.string.movies_best))
+        val tabs: List<String> = listOf(getString(R.string.movies_popular), getString(R.string.movies_best))
         val pagerAdapter = fragmentManager?.let { PagerAdapter(it, lifecycle) }
 
         viewPager.adapter = pagerAdapter

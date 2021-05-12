@@ -53,6 +53,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$gsonConverterVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

@@ -33,7 +33,7 @@ class TopMoviesFragment : Fragment(), TopMoviesView {
     }
 
     override fun showMovies(movies: List<Movie>) {
-        (view as TextView).text = movies.toString()
+        //(view as TextView).text = movies.toString()
     }
 
     override fun showError() {

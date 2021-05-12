@@ -2,7 +2,8 @@
     <string name="app_name">My Movies</string>
     <string name="movies_all">Все фильмы</string>
     <string name="movies_favorite">Избранное</string>
-    <string name="movies_new">Новые</string>
+    <string name="movies_popular">Популярные</string>
     <string name="movies_best">Лучшие</string>
     <string name="error_loading_movies">Error while loading movies</string>
+    <string name="movie_picture">Фотография фильма</string>
 </resources>

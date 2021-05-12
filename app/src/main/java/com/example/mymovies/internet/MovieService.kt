@@ -7,11 +7,11 @@ object MovieService {
 
     fun getPopularMovies(): List<Movie>? {
         val response = movieService.getPopularMovies().execute().body()
-        return response?.movies?.let { MovieConverter.convert(it) }
+        return response?.movieModels?.let { MovieConverter.convert(it) }
     }
 
     fun getTopMovies(): List<Movie>? {
         val response = movieService.getTopMovies().execute().body()
-        return response?.movies?.let { MovieConverter.convert(it) }
+        return response?.movieModels?.let { MovieConverter.convert(it) }
     }
 }

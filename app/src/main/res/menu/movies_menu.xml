@@ -4,7 +4,7 @@
         android:id="@+id/menu_item_all"
         android:enabled="true"
         android:icon="@drawable/icon_movies_all"
-        android:title="@string/movies_all"/>
+        android:title="@string/movies_all" />
 
     <item
         android:id="@+id/menu_item_favorites"

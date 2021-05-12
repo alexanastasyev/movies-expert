@@ -4,15 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mymovies.Movie
+import com.example.mymovies.screens.movies.all.MovieAdapter
 import com.example.mymovies.R
 
 class PopularMoviesFragment : Fragment(), PopularMoviesView {
 
     private val presenter = PopularMoviesPresenter(this)
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,6 +26,8 @@ class PopularMoviesFragment : Fragment(), PopularMoviesView {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        recyclerView = view.findViewById(R.id.fragment_recycler_movies_new)
+        recyclerView.layoutManager = LinearLayoutManager(view.context)
         presenter.loadPopularMovies()
         super.onViewCreated(view, savedInstanceState)
     }
@@ -33,7 +38,7 @@ class PopularMoviesFragment : Fragment(), PopularMoviesView {
     }
 
     override fun showMovies(movies: List<Movie>) {
-        (view as TextView).text = movies.toString()
+        recyclerView.adapter = MovieAdapter(movies)
     }
 
     override fun showError() {
