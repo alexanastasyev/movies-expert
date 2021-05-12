@@ -11,7 +11,14 @@ import com.example.mymovies.R
 import com.example.mymovies.internet.NetworkUtils
 import com.squareup.picasso.Picasso
 
-class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+
+    var movies: MutableList<Movie> = mutableListOf()
+
+    fun addMovies(newMovies: List<Movie>) {
+        (movies as ArrayList<Movie>).addAll(newMovies)
+        notifyDataSetChanged()
+    }
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageViewMoviePicture: ImageView? = null
@@ -33,7 +40,7 @@ class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movie
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.textViewMovieTitle?.text = movies[position].title
         Picasso.get()
-            .load(NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_BIG_SIZE + movies[position].bigPicturePath)
+            .load(movies[position].bigPicturePath)
             .placeholder(R.drawable.movie_big_picture)
             .into(holder.imageViewMoviePicture)
     }

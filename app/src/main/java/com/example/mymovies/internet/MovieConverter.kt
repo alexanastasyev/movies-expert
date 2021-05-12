@@ -3,16 +3,16 @@ package com.example.mymovies.internet
 import com.example.mymovies.Movie
 
 object MovieConverter {
-    fun convert(serviceMovieModels: List<ServiceMovieModel>): List<Movie> {
-       return serviceMovieModels.map { serviceMovie ->
+    fun convert(serverMovieModels: List<ServerMovieModel>): List<Movie> {
+       return serverMovieModels.map { serverMovie ->
            Movie(
-                   id = serviceMovie.id,
-                   title = serviceMovie.title,
-                   date = serviceMovie.date,
-                   rating = (serviceMovie.rating * 10).toInt(),
-                   description = serviceMovie.description,
-                   smallPicturePath = serviceMovie.smallPicturePath,
-                   bigPicturePath = serviceMovie.bigPicturePath
+                   id = serverMovie.id,
+                   title = serverMovie.title,
+                   date = serverMovie.date,
+                   rating = (serverMovie.rating * 10).toInt(),
+                   description = serverMovie.description,
+                   smallPicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_SMALL_SIZE + serverMovie.smallPicturePath,
+                   bigPicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_BIG_SIZE + serverMovie.bigPicturePath
            )
        }
     }

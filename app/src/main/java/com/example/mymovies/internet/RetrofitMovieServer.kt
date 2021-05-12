@@ -3,7 +3,7 @@ package com.example.mymovies.internet
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitMovieService {
+object RetrofitMovieServer {
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(NetworkUtils.SERVICE_BASE_URL)

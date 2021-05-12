@@ -2,7 +2,7 @@ package com.example.mymovies.internet
 
 import com.google.gson.annotations.SerializedName
 
-class ServiceMovieModel(
+class ServerMovieModel(
     @SerializedName("id")
     val id: Int,
 

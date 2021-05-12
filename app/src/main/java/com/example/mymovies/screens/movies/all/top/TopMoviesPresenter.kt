@@ -1,6 +1,6 @@
 package com.example.mymovies.screens.movies.all.top
 
-import com.example.mymovies.internet.MovieService
+import com.example.mymovies.internet.MovieServer
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -11,7 +11,7 @@ class TopMoviesPresenter(private val view: TopMoviesView) {
     private val compositeDisposable = CompositeDisposable()
 
     fun loadTopMovies() {
-        val disposable = Single.fromCallable { MovieService.getTopMovies() }
+        val disposable = Single.fromCallable { MovieServer.getTopMovies() }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ movies ->

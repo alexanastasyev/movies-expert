@@ -1,6 +1,8 @@
 package com.example.mymovies.screens.movies.all.popular
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +16,14 @@ import com.example.mymovies.R
 
 class PopularMoviesFragment : Fragment(), PopularMoviesView {
 
+    companion object {
+        private const val PAGINATION_NUMBER = 5
+    }
+
     private val presenter = PopularMoviesPresenter(this)
+
     private lateinit var recyclerView: RecyclerView
+    private val adapter = MovieAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +36,23 @@ class PopularMoviesFragment : Fragment(), PopularMoviesView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = view.findViewById(R.id.fragment_recycler_movies_new)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
-        presenter.loadPopularMovies()
+        recyclerView.adapter = adapter
+        presenter.loadNextPage()
+
+//        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//
+//                val totalItemCount = recyclerView.layoutManager?.itemCount
+//                val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+//
+//                if (totalItemCount != null) {
+//                    if (totalItemCount - lastVisibleItemPosition <= PAGINATION_NUMBER) {
+//                        presenter.loadNextPage()
+//                    }
+//                }
+//            }
+//        })
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -38,7 +62,8 @@ class PopularMoviesFragment : Fragment(), PopularMoviesView {
     }
 
     override fun showMovies(movies: List<Movie>) {
-        recyclerView.adapter = MovieAdapter(movies)
+        adapter.addMovies(movies)
+        adapter.notifyDataSetChanged()
     }
 
     override fun showError() {
