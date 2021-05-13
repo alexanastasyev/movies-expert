@@ -1,6 +1,5 @@
 package com.example.mymovies.screens.movies.all.popular
 
-import android.util.Log
 import com.example.mymovies.internet.MovieServer
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,7 +13,7 @@ class PopularMoviesPresenter(private val view: PopularMoviesView) {
     }
 
     private val compositeDisposable = CompositeDisposable()
-    private var currentPage = 0
+    private var lastPageIndex = 0
 
     private var isLoading = false
 
@@ -23,12 +22,13 @@ class PopularMoviesPresenter(private val view: PopularMoviesView) {
             return
         }
         isLoading = true
-        currentPage++
-        if (currentPage >= MAX_PAGE) {
+        lastPageIndex++
+        if (lastPageIndex >= MAX_PAGE) {
+            isLoading = false
             view.showError()
             return
         }
-        val disposable = Single.fromCallable { MovieServer.getPopularMovies(currentPage) }
+        val disposable = Single.fromCallable { MovieServer.getPopularMovies(lastPageIndex) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ movies ->

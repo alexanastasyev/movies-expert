@@ -1,9 +1,12 @@
 <resources>
-    <string name="app_name">My Movies</string>
+    <string name="app_name">Мои фильмы</string>
     <string name="movies_all">Все фильмы</string>
     <string name="movies_favorite">Избранное</string>
     <string name="movies_popular">Популярные</string>
     <string name="movies_best">Лучшие</string>
-    <string name="error_loading_movies">Error while loading movies</string>
+    <string name="error_loading_movies">Ошибка загрузки списка фильмов!</string>
     <string name="movie_picture">Фотография фильма</string>
+    <string name="search">Поиск</string>
+    <string name="movies_genres">Жанры</string>
+    <string name="all_genres">Все жанры</string>
 </resources>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ class PopularMoviesFragment : Fragment(), PopularMoviesView {
 
     private val presenter = PopularMoviesPresenter(this)
 
+    private lateinit var startingProgressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
     private val adapter = MovieAdapter()
 
@@ -32,6 +34,7 @@ class PopularMoviesFragment : Fragment(), PopularMoviesView {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        startingProgressBar = view.findViewById(R.id.starting_progress_bar)
         recyclerView = view.findViewById(R.id.fragment_recycler_movies_new)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         recyclerView.adapter = adapter
@@ -49,6 +52,10 @@ class PopularMoviesFragment : Fragment(), PopularMoviesView {
                     if (totalItemCount - lastVisibleItemPosition <= PAGINATION_NUMBER) {
                         presenter.loadNextPage()
                     }
+
+                    if (lastVisibleItemPosition == totalItemCount - 1) {
+                        showLoading()
+                    }
                 }
             }
         })
@@ -60,17 +67,26 @@ class PopularMoviesFragment : Fragment(), PopularMoviesView {
         super.onDestroy()
     }
 
-        override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
     }
 
     override fun showMovies(movies: List<Movie>) {
+        hideLoading()
         adapter.addMovies(movies)
         adapter.notifyDataSetChanged()
     }
 
     override fun showError() {
         Toast.makeText(view?.context, getString(R.string.error_loading_movies), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showLoading() {
+        startingProgressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideLoading() {
+        startingProgressBar.visibility = View.GONE
     }
 }

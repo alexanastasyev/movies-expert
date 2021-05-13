@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -23,6 +24,7 @@ class TopMoviesFragment : Fragment(), TopMoviesView {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        view.findViewById<ProgressBar>(R.id.starting_progress_bar).visibility = View.GONE
         presenter.loadTopMovies()
         super.onViewCreated(view, savedInstanceState)
     }

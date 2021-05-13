@@ -2,6 +2,7 @@ package com.example.mymovies.screens.movies
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.mymovies.R
@@ -24,6 +25,8 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
+        disableNightMode()
+
         findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_item_all -> {
@@ -41,6 +44,10 @@ class StartActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             showAllMoviesFragment()
         }
+    }
+
+    private fun disableNightMode() {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 
     private fun showAllMoviesFragment() {

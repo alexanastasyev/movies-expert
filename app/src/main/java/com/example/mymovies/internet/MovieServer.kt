@@ -1,8 +1,6 @@
 package com.example.mymovies.internet
 
-import android.util.Log
 import com.example.mymovies.Movie
-import io.reactivex.Single
 
 object MovieServer {
     private val movieService = RetrofitMovieServer.getInstance()
