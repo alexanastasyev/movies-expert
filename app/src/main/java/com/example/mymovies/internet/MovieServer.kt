@@ -1,6 +1,7 @@
 package com.example.mymovies.internet
 
 import com.example.mymovies.Movie
+import com.example.mymovies.internet.models.MovieConverter
 
 object MovieServer {
     private val movieService = RetrofitMovieServer.getInstance()

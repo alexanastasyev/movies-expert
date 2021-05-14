@@ -10,9 +10,9 @@ object RetrofitMovieServer {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    private val movieService = retrofit.create(MovieServiceInterface::class.java)
+    private val movieService = retrofit.create(MovieServerInterface::class.java)
 
-    fun getInstance() : MovieServiceInterface {
+    fun getInstance() : MovieServerInterface {
         return movieService
     }
 }

@@ -1,6 +1,7 @@
-package com.example.mymovies.internet
+package com.example.mymovies.internet.models
 
 import com.example.mymovies.Movie
+import com.example.mymovies.internet.NetworkUtils
 
 object MovieConverter {
     private const val RATING_FACTOR = 10
