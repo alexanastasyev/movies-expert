@@ -11,4 +11,6 @@ object NetworkUtils {
     const val DEFAULT_REGION = "RU"
 
     const val API_KEY = "d0c314843449830d4310a88c038551d5"
+
+    const val MIN_VOTES = 100
 }

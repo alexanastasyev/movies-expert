@@ -15,6 +15,9 @@ class ServerMovieModel(
     @SerializedName("vote_average")
     val rating: Float,
 
+    @SerializedName("vote_count")
+    val votesAmount: Int,
+
     @SerializedName("release_date")
     val date: String,
 

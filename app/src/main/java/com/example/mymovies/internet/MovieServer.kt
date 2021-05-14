@@ -13,6 +13,11 @@ object MovieServer {
 
     fun getTopMovies(page: Int): List<Movie>? {
         val response = movieService.getTopMovies(page = page).execute().body()
-        return response?.movieModels?.let { MovieConverter.convert(it) }
+        val movieModels =  response?.movieModels
+        return if (movieModels != null) {
+            MovieConverter.convert(movieModels.filter { it.votesAmount > NetworkUtils.MIN_VOTES })
+        } else {
+            null
+        }
     }
 }
