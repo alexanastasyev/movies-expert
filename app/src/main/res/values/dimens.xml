@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="bottom_navigation_height">65dp</dimen>
+    <dimen name="movie_textview_height">60dp</dimen>
+    <dimen name="movie_title_size">18sp</dimen>
+    <dimen name="movie_image_height">200dp</dimen>
+    <dimen name="movies_margin">8dp</dimen>
+    <dimen name="spinner_genres_size">16sp</dimen>
+    <dimen name="spinner_genres_padding">8dp</dimen>
+    <dimen name="spinner_genres_height">30dp</dimen>
+    <dimen name="line_separator_width">1dp</dimen>
+    <dimen name="line_separator_margin">50dp</dimen>
+    <dimen name="progress_bar_size">50dp</dimen>
+    <dimen name="progress_bar_margin_top">50dp</dimen>
 </resources>
