@@ -68,9 +68,9 @@ class TopMoviesFragment : Fragment(), TopMoviesView {
         retainInstance = true
     }
 
-    override fun onDestroyView() {
+    override fun onDestroy() {
         presenter.disposeDisposable()
-        super.onDestroyView()
+        super.onDestroy()
     }
 
     override fun showMovies(movies: List<Movie>) {

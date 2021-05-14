@@ -30,19 +30,19 @@ class TopMoviesPresenter(private val view: TopMoviesView) {
             return
         }
         val disposable = Single.fromCallable { MovieServer.getTopMovies(lastPageIndex) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ movies ->
-                    if (movies != null) {
-                        view.showMovies(movies)
-                    } else {
-                        view.showError()
-                    }
-                    isLoading = false
-                }, {
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ movies ->
+                if (movies != null) {
+                    view.showMovies(movies)
+                } else {
                     view.showError()
-                    isLoading = false
-                })
+                }
+                isLoading = false
+            }, {
+                view.showError()
+                isLoading = false
+            })
         compositeDisposable.add(disposable)
     }
 
