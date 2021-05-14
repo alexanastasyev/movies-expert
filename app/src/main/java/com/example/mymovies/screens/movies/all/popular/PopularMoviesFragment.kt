@@ -1,6 +1,7 @@
 package com.example.mymovies.screens.movies.all.popular
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -79,6 +80,7 @@ class PopularMoviesFragment : Fragment(), PopularMoviesView {
     }
 
     override fun showError() {
+        Log.i("TEST", "Error loading popular")
         Toast.makeText(view?.context, getString(R.string.error_loading_movies), Toast.LENGTH_SHORT).show()
     }
 

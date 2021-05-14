@@ -11,8 +11,8 @@ object MovieServer {
         return response?.movieModels?.let { MovieConverter.convert(it) }
     }
 
-    fun getTopMovies(): List<Movie>? {
-        val response = movieService.getTopMovies().execute().body()
+    fun getTopMovies(page: Int): List<Movie>? {
+        val response = movieService.getTopMovies(page = page).execute().body()
         return response?.movieModels?.let { MovieConverter.convert(it) }
     }
 }
