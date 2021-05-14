@@ -38,8 +38,10 @@ class TopMoviesPresenter(private val view: TopMoviesView) {
                     } else {
                         view.showError()
                     }
+                    isLoading = false
                 }, {
                     view.showError()
+                    isLoading = false
                 })
         compositeDisposable.add(disposable)
     }
