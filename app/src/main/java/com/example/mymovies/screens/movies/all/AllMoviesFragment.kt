@@ -19,7 +19,6 @@ class AllMoviesFragment : Fragment() {
 
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
-    private lateinit var spinner: Spinner
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -32,9 +31,6 @@ class AllMoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         tabLayout = view.findViewById(R.id.tab_layout)
         viewPager = view.findViewById(R.id.view_pager)
-        spinner = view.findViewById(R.id.spinner_genres)
-
-        configureSpinner(view)
 
         val tabs: List<String> = listOf(getString(R.string.movies_popular), getString(R.string.movies_best))
         val pagerAdapter = PagerAdapter(childFragmentManager, lifecycle)
@@ -47,13 +43,6 @@ class AllMoviesFragment : Fragment() {
         }.attach()
 
         super.onViewCreated(view, savedInstanceState)
-    }
-
-    private fun configureSpinner(view: View) {
-        val spinnerAdapter: ArrayAdapter<String> = ArrayAdapter<String>(view.context,
-                R.layout.spinner_layout, listOf(getString(R.string.all_genres), "Первый", "Второй", "Третий", "Четвёртый", "Пятый"))
-        spinnerAdapter.setDropDownViewResource(R.layout.spinner_item_layout)
-        spinner.adapter = spinnerAdapter
     }
 
     override fun onDestroyView() {
