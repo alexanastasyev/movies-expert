@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,6 +39,13 @@ class PopularMoviesFragment : Fragment(), PopularMoviesView {
         startingProgressBar = view.findViewById(R.id.starting_progress_bar)
         recyclerView = view.findViewById(R.id.fragment_recycler_movies_new)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
+
+        adapter.onMovieClickListener = object : MovieAdapter.OnMovieClickListener {
+            override fun onMovieClick(position: Int) {
+                val id = adapter.movies[position].id
+                Toast.makeText(context, "ID: $id", Toast.LENGTH_SHORT).show()
+            }
+        }
         recyclerView.adapter = adapter
 
         presenter.loadNextPage()

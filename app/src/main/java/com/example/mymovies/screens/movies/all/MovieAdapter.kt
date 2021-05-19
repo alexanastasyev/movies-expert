@@ -15,26 +15,35 @@ import io.reactivex.Single
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     val movies: MutableList<Movie> = mutableListOf()
+    var onMovieClickListener: OnMovieClickListener? = null
 
     fun addMovies(newMovies: List<Movie>) {
         movies.addAll(newMovies)
     }
 
-    class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class MovieViewHolder(itemView: View, onMovieClickListener: OnMovieClickListener? = null) : RecyclerView.ViewHolder(itemView) {
         var imageViewMoviePicture: ImageView? = null
         var textViewMovieTitle: TextView? = null
 
         init {
             imageViewMoviePicture = itemView.findViewById(R.id.movie_image)
             textViewMovieTitle = itemView.findViewById(R.id.movie_name)
+
+            itemView.setOnClickListener {
+                onMovieClickListener?.onMovieClick(adapterPosition)
+            }
         }
+    }
+
+    interface OnMovieClickListener {
+        fun onMovieClick(position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.movie_layout, parent, false)
-        return MovieViewHolder(itemView)
+        return MovieViewHolder(itemView, onMovieClickListener)
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {

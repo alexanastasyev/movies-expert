@@ -37,6 +37,13 @@ class TopMoviesFragment : Fragment(), TopMoviesView {
         startingProgressBar = view.findViewById(R.id.starting_progress_bar)
         recyclerView = view.findViewById(R.id.fragment_recycler_movies_new)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
+
+        adapter.onMovieClickListener = object : MovieAdapter.OnMovieClickListener {
+            override fun onMovieClick(position: Int) {
+                val id = adapter.movies[position].id
+                Toast.makeText(context, "ID: $id", Toast.LENGTH_SHORT).show()
+            }
+        }
         recyclerView.adapter = adapter
 
         presenter.loadNextPage()
