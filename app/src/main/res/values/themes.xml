@@ -18,4 +18,18 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textAllCaps">false</item>
     </style>
+
+    <style name="TextViewMovieInfoStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextViewMovieInfoStyleEdit" parent="TextViewMovieInfoStyle">
+        <item name="android:textColor">@color/grey</item>
+    </style>
 </resources>
