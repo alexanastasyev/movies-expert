@@ -9,9 +9,10 @@
     <string name="search">Поиск</string>
     <string name="movies_genres">Жанры</string>
     <string name="all_genres">Все жанры</string>
-    <string name="title">Название</string>
-    <string name="release_date">Дата релиза</string>
-    <string name="rating">Рейтинг</string>
+    <string name="title">Название:</string>
+    <string name="release_date">Релиз:</string>
+    <string name="rating">Рейтинг:</string>
     <string name="add_to_favorites_icon">Иконка добавления в избранное</string>
     <string name="button_back">Кнопка назад</string>
+    <string name="error_cannot_load_movie_details">Error! Cannot load movie details.</string>
 </resources>

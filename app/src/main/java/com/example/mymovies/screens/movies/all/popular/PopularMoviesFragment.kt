@@ -1,12 +1,11 @@
 package com.example.mymovies.screens.movies.all.popular
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mymovies.Movie
 import com.example.mymovies.screens.movies.all.MovieAdapter
 import com.example.mymovies.R
+import com.example.mymovies.screens.ActivityUtils
+import com.example.mymovies.screens.details.MovieDetailsActivity
 
 class PopularMoviesFragment : Fragment(), PopularMoviesView {
 
@@ -42,8 +43,11 @@ class PopularMoviesFragment : Fragment(), PopularMoviesView {
 
         adapter.onMovieClickListener = object : MovieAdapter.OnMovieClickListener {
             override fun onMovieClick(position: Int) {
-                val id = adapter.movies[position].id
-                Toast.makeText(context, "ID: $id", Toast.LENGTH_SHORT).show()
+                val movieId = adapter.movies[position].id
+                val intent = Intent(context, MovieDetailsActivity::class.java).apply {
+                    putExtra(ActivityUtils.MOVIE_ID_KEY, movieId)
+                }
+                startActivity(intent)
             }
         }
         recyclerView.adapter = adapter

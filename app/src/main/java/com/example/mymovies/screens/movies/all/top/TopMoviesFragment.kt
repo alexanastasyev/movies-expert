@@ -1,5 +1,6 @@
 package com.example.mymovies.screens.movies.all.top
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mymovies.Movie
 import com.example.mymovies.R
+import com.example.mymovies.screens.ActivityUtils
+import com.example.mymovies.screens.details.MovieDetailsActivity
 import com.example.mymovies.screens.movies.all.MovieAdapter
 
 class TopMoviesFragment : Fragment(), TopMoviesView {
@@ -40,8 +43,11 @@ class TopMoviesFragment : Fragment(), TopMoviesView {
 
         adapter.onMovieClickListener = object : MovieAdapter.OnMovieClickListener {
             override fun onMovieClick(position: Int) {
-                val id = adapter.movies[position].id
-                Toast.makeText(context, "ID: $id", Toast.LENGTH_SHORT).show()
+                val movieId = adapter.movies[position].id
+                val intent = Intent(context, MovieDetailsActivity::class.java).apply {
+                    putExtra(ActivityUtils.MOVIE_ID_KEY, movieId)
+                }
+                startActivity(intent)
             }
         }
         recyclerView.adapter = adapter
