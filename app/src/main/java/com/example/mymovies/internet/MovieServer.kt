@@ -1,6 +1,6 @@
 package com.example.mymovies.internet
 
-import com.example.mymovies.Movie
+import com.example.mymovies.data.Movie
 import com.example.mymovies.internet.converters.MovieConverter
 
 object MovieServer {

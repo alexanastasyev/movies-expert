@@ -1,7 +1,6 @@
 package com.example.mymovies.screens.details
 
 import android.util.Log
-import com.example.mymovies.Movie
 import com.example.mymovies.internet.MovieServer
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers

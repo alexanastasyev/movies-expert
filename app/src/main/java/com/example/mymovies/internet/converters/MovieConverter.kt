@@ -1,6 +1,6 @@
 package com.example.mymovies.internet.converters
 
-import com.example.mymovies.Movie
+import com.example.mymovies.data.Movie
 import com.example.mymovies.internet.NetworkUtils
 import com.example.mymovies.internet.responses.ServerMovieModel
 
@@ -21,7 +21,8 @@ object MovieConverter {
                rating = (serverMovie.rating * RATING_FACTOR).toInt(),
                description = serverMovie.description,
                smallPicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_SMALL_SIZE + serverMovie.smallPicturePath,
-               bigPicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_BIG_SIZE + serverMovie.bigPicturePath
+               bigPicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_BIG_SIZE + serverMovie.bigPicturePath,
+               isFavorite = false
            )
        }
     }

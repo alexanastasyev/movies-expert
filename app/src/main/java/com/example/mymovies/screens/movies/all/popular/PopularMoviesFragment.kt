@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mymovies.Movie
+import com.example.mymovies.data.Movie
 import com.example.mymovies.screens.movies.all.MovieAdapter
 import com.example.mymovies.R
 import com.example.mymovies.screens.ActivityUtils
