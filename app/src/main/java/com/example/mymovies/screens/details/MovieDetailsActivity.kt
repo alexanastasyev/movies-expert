@@ -36,7 +36,7 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
         hideLoading()
         val movieImageView = findViewById<ImageView>(R.id.movie_details_image)
         Picasso.get()
-            .load(movie.bigPicturePath)
+            .load(movie.smallPicturePath)
             .placeholder(R.drawable.movie_big_picture)
             .into(movieImageView)
         findViewById<TextView>(R.id.movie_details_title_edit).text = movie.title
