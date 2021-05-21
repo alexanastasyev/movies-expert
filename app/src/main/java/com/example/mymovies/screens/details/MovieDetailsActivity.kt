@@ -35,18 +35,30 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
 
     private fun setOnStarClickListener() {
         findViewById<ImageView>(R.id.movie_details_star).setOnClickListener {
-            this.movie.isFavorite = !this.movie.isFavorite
-            setStar()
-            showStarMessage()
+            @Suppress("SENSELESS_COMPARISON")
+            if (this.movie != null) {
+                this.movie.isFavorite = !this.movie.isFavorite
+                if (movie.isFavorite) {
+                    presenter.addMovieToDatabase(movie)
+                } else {
+                    presenter.removeMovieFromDatabase(movie)
+                }
+                setStar()
+                showStarMessage()
+            }
         }
     }
 
     private fun showStarMessage() {
         if (movie.isFavorite) {
-            Toast.makeText(this, getString(R.string.added_to_favorites), Toast.LENGTH_SHORT).show()
+            showMessage(getString(R.string.added_to_favorites))
         } else {
-            Toast.makeText(this, getString(R.string.removed_from_favorites), Toast.LENGTH_SHORT).show()
+            showMessage(getString(R.string.removed_from_favorites))
         }
+    }
+
+    private fun showMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun showMovieInfo(movie: Movie) {
@@ -58,9 +70,9 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
     private fun fillFields() {
         val movieImageView = findViewById<ImageView>(R.id.movie_details_image)
         Picasso.get()
-                .load(movie.smallPicturePath)
-                .placeholder(R.drawable.movie_big_picture)
-                .into(movieImageView)
+            .load(movie.portraitPicturePath)
+            .placeholder(R.drawable.movie_big_picture)
+            .into(movieImageView)
         findViewById<TextView>(R.id.movie_details_title_edit).text = movie.title
         findViewById<TextView>(R.id.movie_details_date_edit).text = movie.date
         findViewById<TextView>(R.id.movie_details_rating_edit).text = movie.rating.toString()
@@ -86,7 +98,7 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
 
     override fun showError() {
         showLoading()
-        Toast.makeText(this, getString(R.string.error_cannot_load_movie_details), Toast.LENGTH_SHORT).show()
+        showMessage(getString(R.string.error_cannot_load_movie_details))
     }
 
     private fun getIdAndLoadMovieDetails(intent: Intent) {

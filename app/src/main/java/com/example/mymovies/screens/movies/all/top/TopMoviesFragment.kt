@@ -14,7 +14,7 @@ import com.example.mymovies.data.Movie
 import com.example.mymovies.R
 import com.example.mymovies.screens.ActivityUtils
 import com.example.mymovies.screens.details.MovieDetailsActivity
-import com.example.mymovies.screens.movies.all.MovieAdapter
+import com.example.mymovies.screens.movies.all.MovieAdapterAll
 
 class TopMoviesFragment : Fragment(), TopMoviesView {
 
@@ -26,7 +26,7 @@ class TopMoviesFragment : Fragment(), TopMoviesView {
 
     private lateinit var startingProgressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
-    private val adapter = MovieAdapter()
+    private val adapter = MovieAdapterAll()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,10 +38,10 @@ class TopMoviesFragment : Fragment(), TopMoviesView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         startingProgressBar = view.findViewById(R.id.starting_progress_bar)
-        recyclerView = view.findViewById(R.id.fragment_recycler_movies_new)
+        recyclerView = view.findViewById(R.id.fragment_recycler_movies_all)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 
-        adapter.onMovieClickListener = object : MovieAdapter.OnMovieClickListener {
+        adapter.onMovieClickListener = object : MovieAdapterAll.OnMovieClickListener {
             override fun onMovieClick(position: Int) {
                 val movieId = adapter.movies[position].id
                 val intent = Intent(context, MovieDetailsActivity::class.java).apply {

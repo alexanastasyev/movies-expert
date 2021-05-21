@@ -10,7 +10,7 @@ import com.example.mymovies.data.Movie
 import com.example.mymovies.R
 import com.squareup.picasso.Picasso
 
-class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapterAll : RecyclerView.Adapter<MovieAdapterAll.MovieViewHolder>() {
 
     val movies: MutableList<Movie> = mutableListOf()
     var onMovieClickListener: OnMovieClickListener? = null
@@ -47,7 +47,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.textViewMovieTitle?.text = movies[position].title
         Picasso.get()
-            .load(movies[position].bigPicturePath)
+            .load(movies[position].landscapePicturePath)
             .placeholder(R.drawable.movie_big_picture)
             .into(holder.imageViewMoviePicture)
     }

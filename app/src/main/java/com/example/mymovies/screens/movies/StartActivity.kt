@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.mymovies.R
+import com.example.mymovies.database.Database
 import com.example.mymovies.screens.movies.all.AllMoviesFragment
 import com.example.mymovies.screens.movies.favorite.FavoriteMoviesFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -24,6 +25,8 @@ class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
+
+        Database.initDatabase(this)
 
         disableNightMode()
 
