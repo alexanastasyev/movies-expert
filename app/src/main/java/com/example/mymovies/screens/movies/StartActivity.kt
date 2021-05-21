@@ -58,6 +58,10 @@ class StartActivity : AppCompatActivity() {
         attachFragment(favoriteMoviesFragment, FAVORITE_MOVIES_FRAGMENT_TAG)
     }
 
+    override fun onBackPressed() {
+        this.finish()
+    }
+
     private fun attachFragment(fragment: Fragment, tag: String) {
         val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         if (supportFragmentManager.findFragmentByTag(tag) == null) {
