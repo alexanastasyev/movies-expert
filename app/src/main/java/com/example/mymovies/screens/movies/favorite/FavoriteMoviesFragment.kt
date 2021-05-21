@@ -7,19 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mymovies.R
 import com.example.mymovies.data.Movie
 import com.example.mymovies.screens.ActivityUtils
 import com.example.mymovies.screens.details.MovieDetailsActivity
-import com.example.mymovies.screens.movies.all.MovieAdapterAll
+import com.example.mymovies.screens.movies.OnMovieClickListener
 
 class FavoriteMoviesFragment : Fragment(), FavoriteMoviesView {
 
+    companion object {
+        private const val COLUMNS_AMOUNT = 2
+    }
+
     private lateinit var presenter: FavoriteMoviesPresenter
     private lateinit var recyclerView: RecyclerView
-    private val adapter = MovieAdapterAll()
+    private val adapter = MovieAdapterFavorite()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,8 +35,8 @@ class FavoriteMoviesFragment : Fragment(), FavoriteMoviesView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = view.findViewById(R.id.fragment_recycler_movies_favorite)
-        recyclerView.layoutManager = LinearLayoutManager(view.context)
-        adapter.onMovieClickListener = object : MovieAdapterAll.OnMovieClickListener {
+        recyclerView.layoutManager = GridLayoutManager(this.requireContext(), COLUMNS_AMOUNT)
+        adapter.onMovieClickListener = object : OnMovieClickListener {
             override fun onMovieClick(position: Int) {
                 val movieId = adapter.movies[position].id
                 val intent = Intent(context, MovieDetailsActivity::class.java).apply {

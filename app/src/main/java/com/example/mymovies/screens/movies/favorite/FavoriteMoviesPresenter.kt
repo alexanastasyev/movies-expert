@@ -16,9 +16,9 @@ class FavoriteMoviesPresenter(
 ) {
     private val compositeDisposable = CompositeDisposable()
     private val database = Room.databaseBuilder(
-            context,
-            AppDatabase::class.java,
-            DatabaseUtils.DATABASE_NAME
+        context,
+        AppDatabase::class.java,
+        DatabaseUtils.DATABASE_NAME
     ).fallbackToDestructiveMigration().build()
 
     fun loadMoviesFromDatabase() {

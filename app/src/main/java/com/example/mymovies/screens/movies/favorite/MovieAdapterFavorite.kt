@@ -1,17 +1,16 @@
-package com.example.mymovies.screens.movies.all
+package com.example.mymovies.screens.movies.favorite
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mymovies.data.Movie
 import com.example.mymovies.R
+import com.example.mymovies.data.Movie
 import com.example.mymovies.screens.movies.OnMovieClickListener
 import com.squareup.picasso.Picasso
 
-class MovieAdapterAll : RecyclerView.Adapter<MovieAdapterAll.MovieViewHolder>() {
+class MovieAdapterFavorite : RecyclerView.Adapter<MovieAdapterFavorite.MovieViewHolder>() {
 
     val movies: MutableList<Movie> = mutableListOf()
     var onMovieClickListener: OnMovieClickListener? = null
@@ -22,11 +21,9 @@ class MovieAdapterAll : RecyclerView.Adapter<MovieAdapterAll.MovieViewHolder>() 
 
     class MovieViewHolder(itemView: View, onMovieClickListener: OnMovieClickListener? = null) : RecyclerView.ViewHolder(itemView) {
         var imageViewMoviePicture: ImageView? = null
-        var textViewMovieTitle: TextView? = null
 
         init {
-            imageViewMoviePicture = itemView.findViewById(R.id.movie_image_all)
-            textViewMovieTitle = itemView.findViewById(R.id.movie_name)
+            imageViewMoviePicture = itemView.findViewById(R.id.movie_image_favorite)
 
             itemView.setOnClickListener {
                 onMovieClickListener?.onMovieClick(adapterPosition)
@@ -37,14 +34,13 @@ class MovieAdapterAll : RecyclerView.Adapter<MovieAdapterAll.MovieViewHolder>() 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.movie_layout_all, parent, false)
+            .inflate(R.layout.movie_layout_favorite, parent, false)
         return MovieViewHolder(itemView, onMovieClickListener)
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.textViewMovieTitle?.text = movies[position].title
         Picasso.get()
-            .load(movies[position].landscapePicturePath)
+            .load(movies[position].portraitPicturePath)
             .placeholder(R.drawable.movie_picture_holder)
             .into(holder.imageViewMoviePicture)
     }
@@ -52,4 +48,5 @@ class MovieAdapterAll : RecyclerView.Adapter<MovieAdapterAll.MovieViewHolder>() 
     override fun getItemCount(): Int {
         return movies.size
     }
+
 }

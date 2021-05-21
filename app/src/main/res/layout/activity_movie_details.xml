@@ -22,7 +22,7 @@
                 android:id="@+id/movie_details_image"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:src="@drawable/movie_big_picture"
+                android:src="@drawable/movie_picture_holder"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:contentDescription="@string/movie_picture"

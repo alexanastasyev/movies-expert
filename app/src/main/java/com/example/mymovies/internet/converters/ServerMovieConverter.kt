@@ -24,8 +24,8 @@ object ServerMovieConverter {
                date = "${dates[DATE_DAY_INDEX]}.${dates[DATE_MONTH_INDEX]}.${dates[DATE_YEAR_INDEX]}",
                rating = (serverMovie.rating * RATING_FACTOR).toInt(),
                description = serverMovie.description,
-               portraitPicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_SMALL_SIZE + serverMovie.smallPicturePath,
-               landscapePicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_BIG_SIZE + serverMovie.bigPicturePath,
+               portraitPicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_PORTRAIT_SIZE + serverMovie.smallPicturePath,
+               landscapePicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_LANDSCAPE_SIZE + serverMovie.bigPicturePath,
                isFavorite = isMovieFavorite(serverMovie.id, context)
            )
        }
@@ -33,9 +33,9 @@ object ServerMovieConverter {
 
     private fun isMovieFavorite(id: Int, context: Context): Boolean {
         val database = Room.databaseBuilder(
-                context,
-                AppDatabase::class.java,
-                DatabaseUtils.DATABASE_NAME
+            context,
+            AppDatabase::class.java,
+            DatabaseUtils.DATABASE_NAME
         ).fallbackToDestructiveMigration().build()
         return database.moviesDao().exist(id)
     }

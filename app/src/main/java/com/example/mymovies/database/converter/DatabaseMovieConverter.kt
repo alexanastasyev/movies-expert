@@ -26,14 +26,14 @@ object DatabaseMovieConverter {
         val result = arrayListOf<DatabaseMovieModel>()
         for (movie in movies) {
             result.add(DatabaseMovieModel(
-                    id = movie.id,
-                    title = movie.title,
-                    date = movie.date,
-                    rating = movie.rating,
-                    description = movie.description,
-                    portraitPicturePath = movie.portraitPicturePath,
-                    landscapePicturePath = movie.landscapePicturePath,
-                    isFavorite = movie.isFavorite
+                id = movie.id,
+                title = movie.title,
+                date = movie.date,
+                rating = movie.rating,
+                description = movie.description,
+                portraitPicturePath = movie.portraitPicturePath,
+                landscapePicturePath = movie.landscapePicturePath,
+                isFavorite = movie.isFavorite
             ))
         }
         return result

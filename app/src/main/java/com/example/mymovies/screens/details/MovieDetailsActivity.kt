@@ -73,7 +73,7 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
         val movieImageView = findViewById<ImageView>(R.id.movie_details_image)
         Picasso.get()
             .load(movie.portraitPicturePath)
-            .placeholder(R.drawable.movie_big_picture)
+            .placeholder(R.drawable.movie_picture_holder)
             .into(movieImageView)
         findViewById<TextView>(R.id.movie_details_title_edit).text = movie.title
         findViewById<TextView>(R.id.movie_details_date_edit).text = movie.date

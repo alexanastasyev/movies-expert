@@ -1,5 +1,6 @@
 package com.example.mymovies.screens.movies
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -9,7 +10,6 @@ import com.example.mymovies.R
 import com.example.mymovies.screens.movies.all.AllMoviesFragment
 import com.example.mymovies.screens.movies.favorite.FavoriteMoviesFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
 
 class StartActivity : AppCompatActivity() {
 
@@ -59,7 +59,14 @@ class StartActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        this.finish()
+        collapseApp()
+    }
+
+    private fun collapseApp() {
+        val startMain = Intent(Intent.ACTION_MAIN)
+        startMain.addCategory(Intent.CATEGORY_HOME)
+        startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(startMain)
     }
 
     private fun attachFragment(fragment: Fragment, tag: String) {

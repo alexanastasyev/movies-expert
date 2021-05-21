@@ -2,7 +2,6 @@ package com.example.mymovies.screens.movies.all.top
 
 import android.content.Context
 import com.example.mymovies.internet.MovieServer
-import com.example.mymovies.screens.movies.all.popular.PopularMoviesPresenter
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

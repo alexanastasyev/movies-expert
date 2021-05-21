@@ -12,7 +12,7 @@ object RetrofitMovieServer {
 
     private val movieService = retrofit.create(MovieServerInterface::class.java)
 
-    fun getInstance() : MovieServerInterface {
+    fun getInstance(): MovieServerInterface {
         return movieService
     }
 }

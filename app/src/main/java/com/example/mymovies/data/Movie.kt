@@ -9,8 +9,4 @@ class Movie(
     var portraitPicturePath: String,
     var landscapePicturePath: String,
     var isFavorite: Boolean
-) {
-    override fun toString(): String {
-        return "Movie(id=$id, title='$title', date='$date', rating=$rating, description='$description', smallPicturePath='$portraitPicturePath', bigPicturePath='$landscapePicturePath')"
-    }
-}
+)

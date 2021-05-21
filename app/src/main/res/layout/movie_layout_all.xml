@@ -6,7 +6,7 @@
     android:layout_margin="@dimen/movies_margin">
 
     <ImageView
-        android:id="@+id/movie_image"
+        android:id="@+id/movie_image_all"
         android:layout_width="match_parent"
         android:layout_height="@dimen/movie_image_height"
         android:adjustViewBounds="true"
@@ -28,6 +28,6 @@
         android:shadowColor="@color/light_blue"
         android:shadowRadius="10"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/movie_image"/>
+        app:layout_constraintBottom_toBottomOf="@+id/movie_image_all"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

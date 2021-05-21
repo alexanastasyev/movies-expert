@@ -14,6 +14,7 @@ import com.example.mymovies.data.Movie
 import com.example.mymovies.R
 import com.example.mymovies.screens.ActivityUtils
 import com.example.mymovies.screens.details.MovieDetailsActivity
+import com.example.mymovies.screens.movies.OnMovieClickListener
 import com.example.mymovies.screens.movies.all.MovieAdapterAll
 
 class TopMoviesFragment : Fragment(), TopMoviesView {
@@ -41,7 +42,7 @@ class TopMoviesFragment : Fragment(), TopMoviesView {
         recyclerView = view.findViewById(R.id.fragment_recycler_movies_all)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 
-        adapter.onMovieClickListener = object : MovieAdapterAll.OnMovieClickListener {
+        adapter.onMovieClickListener = object : OnMovieClickListener {
             override fun onMovieClick(position: Int) {
                 val movieId = adapter.movies[position].id
                 val intent = Intent(context, MovieDetailsActivity::class.java).apply {
