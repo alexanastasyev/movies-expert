@@ -11,8 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMovies">
-        <activity android:name=".screens.details.MovieDetailsActivity" />
-        <activity android:name=".screens.movies.StartActivity">
+
+        <activity
+            android:name=".screens.details.MovieDetailsActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".screens.movies.StartActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

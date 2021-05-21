@@ -1,5 +1,6 @@
 package com.example.mymovies.screens.movies.all.top
 
+import android.content.Context
 import com.example.mymovies.internet.MovieServer
 import com.example.mymovies.screens.movies.all.popular.PopularMoviesPresenter
 import io.reactivex.Single
@@ -18,7 +19,7 @@ class TopMoviesPresenter(private val view: TopMoviesView) {
 
     private var isLoading = false
 
-    fun loadNextPage() {
+    fun loadNextPage(context: Context) {
         if (isLoading) {
             return
         }
@@ -29,7 +30,7 @@ class TopMoviesPresenter(private val view: TopMoviesView) {
             view.showError()
             return
         }
-        val disposable = Single.fromCallable { MovieServer.getTopMovies(lastPageIndex) }
+        val disposable = Single.fromCallable { MovieServer.getTopMovies(lastPageIndex, context) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ movies ->

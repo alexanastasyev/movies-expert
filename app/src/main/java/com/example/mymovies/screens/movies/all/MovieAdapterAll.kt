@@ -40,7 +40,7 @@ class MovieAdapterAll : RecyclerView.Adapter<MovieAdapterAll.MovieViewHolder>() 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.movie_layout, parent, false)
+            .inflate(R.layout.movie_layout_all, parent, false)
         return MovieViewHolder(itemView, onMovieClickListener)
     }
 

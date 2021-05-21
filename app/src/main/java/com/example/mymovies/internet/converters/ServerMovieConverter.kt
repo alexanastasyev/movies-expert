@@ -1,7 +1,10 @@
 package com.example.mymovies.internet.converters
 
+import android.content.Context
+import androidx.room.Room
 import com.example.mymovies.data.Movie
-import com.example.mymovies.database.Database
+import com.example.mymovies.database.AppDatabase
+import com.example.mymovies.database.DatabaseUtils
 import com.example.mymovies.internet.NetworkUtils
 import com.example.mymovies.internet.responses.ServerMovieModel
 
@@ -12,7 +15,7 @@ object ServerMovieConverter {
     private const val DATE_MONTH_INDEX = 1
     private const val DATE_YEAR_INDEX = 0
 
-    fun convertModelsToMovies(serverMovieModels: List<ServerMovieModel>): List<Movie> {
+    fun convertModelsToMovies(serverMovieModels: List<ServerMovieModel>, context: Context): List<Movie> {
        return serverMovieModels.map { serverMovie ->
            val dates = serverMovie.date.split(DATE_SEPARATOR)
            Movie(
@@ -23,13 +26,17 @@ object ServerMovieConverter {
                description = serverMovie.description,
                portraitPicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_SMALL_SIZE + serverMovie.smallPicturePath,
                landscapePicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_BIG_SIZE + serverMovie.bigPicturePath,
-               isFavorite = isMovieFavorite(serverMovie.id)
+               isFavorite = isMovieFavorite(serverMovie.id, context)
            )
        }
     }
 
-    private fun isMovieFavorite(id: Int): Boolean {
-        val database = Database.get()
+    private fun isMovieFavorite(id: Int, context: Context): Boolean {
+        val database = Room.databaseBuilder(
+                context,
+                AppDatabase::class.java,
+                DatabaseUtils.DATABASE_NAME
+        ).fallbackToDestructiveMigration().build()
         return database.moviesDao().exist(id)
     }
 }

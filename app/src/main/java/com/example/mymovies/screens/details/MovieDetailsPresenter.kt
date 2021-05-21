@@ -1,8 +1,11 @@
 package com.example.mymovies.screens.details
 
+import android.content.Context
+import androidx.room.Room
 import com.example.mymovies.data.Movie
-import com.example.mymovies.database.Database
-import com.example.mymovies.database.DatabaseMovieConverter
+import com.example.mymovies.database.AppDatabase
+import com.example.mymovies.database.DatabaseUtils
+import com.example.mymovies.database.converter.DatabaseMovieConverter
 import com.example.mymovies.internet.MovieServer
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -10,13 +13,18 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class MovieDetailsPresenter(
-    private val view: MovieDetailsView
+    private val view: MovieDetailsView,
+    context: Context
 ) {
+    private val database = Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            DatabaseUtils.DATABASE_NAME
+    ).fallbackToDestructiveMigration().build()
 
-    private val database = Database.get()
     private val compositeDisposable = CompositeDisposable()
 
-    fun loadMovieDetails(movieId: Int) {
+    fun loadMovieDetails(movieId: Int, context: Context) {
 
         val disposable = Single.fromCallable { database.moviesDao().exist(movieId) }
             .subscribeOn(Schedulers.io())
@@ -25,7 +33,7 @@ class MovieDetailsPresenter(
                 if (movieExists) {
                     loadMovieDetailsFromDatabase(movieId)
                 } else {
-                    loadMovieDetailsFromServer(movieId)
+                    loadMovieDetailsFromServer(movieId, context)
                 }
             }, {
                 view.showError()
@@ -50,8 +58,8 @@ class MovieDetailsPresenter(
         compositeDisposable.add(disposable)
     }
 
-    private fun loadMovieDetailsFromServer(movieId: Int) {
-        val disposable = Single.fromCallable { MovieServer.getMovieById(movieId) }
+    private fun loadMovieDetailsFromServer(movieId: Int, context: Context) {
+        val disposable = Single.fromCallable { MovieServer.getMovieById(movieId, context) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ movie ->

@@ -1,6 +1,7 @@
-package com.example.mymovies.database
+package com.example.mymovies.database.converter
 
 import com.example.mymovies.data.Movie
+import com.example.mymovies.database.models.DatabaseMovieModel
 
 object DatabaseMovieConverter {
 

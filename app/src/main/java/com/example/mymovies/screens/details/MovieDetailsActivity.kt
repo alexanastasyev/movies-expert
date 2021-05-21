@@ -21,11 +21,13 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
     }
 
     private lateinit var movie: Movie
-    private val presenter = MovieDetailsPresenter(this)
+    private lateinit var presenter: MovieDetailsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
+
+        presenter = MovieDetailsPresenter(this, this)
 
         showLoading()
         getIdAndLoadMovieDetails(intent)
@@ -104,7 +106,7 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
     private fun getIdAndLoadMovieDetails(intent: Intent) {
         val movieId = intent.getIntExtra(ActivityUtils.MOVIE_ID_KEY, INVALID_MOVIE_ID)
         if (isIdValid(movieId)) {
-            presenter.loadMovieDetails(movieId)
+            presenter.loadMovieDetails(movieId, this)
         } else {
             showError()
         }

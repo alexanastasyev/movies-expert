@@ -1,13 +1,11 @@
-package com.example.mymovies.database
+package com.example.mymovies.database.daos
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
+import com.example.mymovies.database.models.DatabaseMovieModel
 
 @Dao
 interface MoviesDAO {
-    @Query("SELECT * FROM movies")
+    @Query("SELECT * FROM movies ORDER BY title")
     fun getAll(): List<DatabaseMovieModel>
 
     @Query("SELECT * FROM movies WHERE id = :id")
@@ -16,7 +14,7 @@ interface MoviesDAO {
     @Query("SELECT EXISTS (SELECT 1 FROM movies WHERE id = :id)")
     fun exist(id: Int): Boolean
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(movies: DatabaseMovieModel)
 
     @Delete

@@ -2,6 +2,8 @@ package com.example.mymovies.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.example.mymovies.database.daos.MoviesDAO
+import com.example.mymovies.database.models.DatabaseMovieModel
 
 @Database(
     entities = [DatabaseMovieModel::class],

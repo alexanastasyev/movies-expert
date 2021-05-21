@@ -52,7 +52,7 @@ class TopMoviesFragment : Fragment(), TopMoviesView {
         }
         recyclerView.adapter = adapter
 
-        presenter.loadNextPage()
+        presenter.loadNextPage(requireContext())
 
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -63,7 +63,7 @@ class TopMoviesFragment : Fragment(), TopMoviesView {
 
                 if (totalItemCount != null) {
                     if (totalItemCount - lastVisibleItemPosition <= PAGINATION_NUMBER) {
-                        presenter.loadNextPage()
+                        presenter.loadNextPage(requireContext())
                     }
 
                     if (lastVisibleItemPosition == totalItemCount - 1) {
