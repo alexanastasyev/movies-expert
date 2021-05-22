@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mymovies">
+    package="com.alexanastasyev.mymovies">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,11 +13,11 @@
         android:theme="@style/Theme.MyMovies">
 
         <activity
-            android:name=".screens.details.MovieDetailsActivity"
+            android:name="com.alexanastasyev.mymovies.screens.details.MovieDetailsActivity"
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".screens.movies.StartActivity"
+            android:name="com.alexanastasyev.mymovies.screens.movies.StartActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
