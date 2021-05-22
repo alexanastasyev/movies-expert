@@ -17,4 +17,6 @@
     <string name="error_cannot_load_movie_details">Error! Cannot load movie details.</string>
     <string name="added_to_favorites">Добавлено в избранное</string>
     <string name="removed_from_favorites">Удалено из избранного</string>
+    <string name="logo_of_imdb">Logo of IMDB</string>
+    <string name="source">Источник:</string>
 </resources>

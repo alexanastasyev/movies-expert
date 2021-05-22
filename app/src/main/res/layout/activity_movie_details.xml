@@ -116,6 +116,38 @@
                 android:textSize="16sp"
                 app:layout_constraintTop_toBottomOf="@id/movie_details_line"/>
 
+            <View
+                android:id="@+id/movie_details_line_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/dark_blue"
+                app:layout_constraintTop_toBottomOf="@id/movie_details_description"/>
+
+            <ImageView
+                android:id="@+id/imdb_logo"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/imdb_logo"
+                android:contentDescription="@string/logo_of_imdb"
+                app:layout_constraintTop_toBottomOf="@id/movie_details_line_bottom"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline_vertical"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/movie_details_source"
+                style="@style/TextViewMovieInfoStyle"
+                android:text="@string/source"
+                app:layout_constraintTop_toBottomOf="@+id/movie_details_line_bottom"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical"/>
+
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_vertical"
                 android:layout_width="wrap_content"
