@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.alexanastasyev.mymovies.R
 import com.alexanastasyev.mymovies.screens.movies.all.AllMoviesFragment
 import com.alexanastasyev.mymovies.screens.movies.favorite.FavoriteMoviesFragment
+import com.alexanastasyev.mymovies.screens.search.SearchMoviesFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class StartActivity : AppCompatActivity() {
@@ -16,10 +17,12 @@ class StartActivity : AppCompatActivity() {
     companion object {
         private const val ALL_MOVIES_FRAGMENT_TAG = "ALL MOVIES"
         private const val FAVORITE_MOVIES_FRAGMENT_TAG = "FAVORITE MOVIES"
+        private const val SEARCH_MOVIES_FRAGMENT_TAG = "SEARCH MOVIES"
     }
 
     private var allMoviesFragment = AllMoviesFragment()
     private val favoriteMoviesFragment = FavoriteMoviesFragment()
+    private val searchMoviesFragment = SearchMoviesFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,10 @@ class StartActivity : AppCompatActivity() {
                 }
                 R.id.menu_item_favorites -> {
                     showFavoriteMoviesFragment()
+                    true
+                }
+                R.id.menu_item_search -> {
+                    showSearchMoviesFragment()
                     true
                 }
                 else -> false
@@ -56,6 +63,10 @@ class StartActivity : AppCompatActivity() {
 
     private fun showFavoriteMoviesFragment() {
         attachFragment(favoriteMoviesFragment, FAVORITE_MOVIES_FRAGMENT_TAG)
+    }
+
+    private fun showSearchMoviesFragment() {
+        attachFragment(searchMoviesFragment, SEARCH_MOVIES_FRAGMENT_TAG)
     }
 
     override fun onBackPressed() {
@@ -84,9 +95,15 @@ class StartActivity : AppCompatActivity() {
         when (tag) {
             ALL_MOVIES_FRAGMENT_TAG -> {
                 hideFragmentByTag(fragmentTransaction, FAVORITE_MOVIES_FRAGMENT_TAG)
+                hideFragmentByTag(fragmentTransaction, SEARCH_MOVIES_FRAGMENT_TAG)
             }
             FAVORITE_MOVIES_FRAGMENT_TAG -> {
                 hideFragmentByTag(fragmentTransaction, ALL_MOVIES_FRAGMENT_TAG)
+                hideFragmentByTag(fragmentTransaction, SEARCH_MOVIES_FRAGMENT_TAG)
+            }
+            SEARCH_MOVIES_FRAGMENT_TAG -> {
+                hideFragmentByTag(fragmentTransaction, ALL_MOVIES_FRAGMENT_TAG)
+                hideFragmentByTag(fragmentTransaction, FAVORITE_MOVIES_FRAGMENT_TAG)
             }
         }
         fragmentTransaction.commit()

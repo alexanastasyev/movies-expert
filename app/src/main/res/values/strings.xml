@@ -19,4 +19,5 @@
     <string name="removed_from_favorites">Удалено из избранного</string>
     <string name="logo_of_imdb">Логотип IMDB</string>
     <string name="source">Источник:</string>
+    <string name="input_movie_title">Введите название фильма</string>
 </resources>
