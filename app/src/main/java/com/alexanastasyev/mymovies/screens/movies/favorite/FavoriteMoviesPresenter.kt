@@ -40,4 +40,8 @@ class FavoriteMoviesPresenter(
     fun disposeDisposable() {
         compositeDisposable.dispose()
     }
+
+    fun closeDatabase() {
+        database.close()
+    }
 }

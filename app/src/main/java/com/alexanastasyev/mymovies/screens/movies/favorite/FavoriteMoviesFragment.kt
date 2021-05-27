@@ -56,6 +56,7 @@ class FavoriteMoviesFragment : Fragment(), FavoriteMoviesView {
 
     override fun onDestroyView() {
         presenter.disposeDisposable()
+        presenter.closeDatabase()
         super.onDestroyView()
     }
 

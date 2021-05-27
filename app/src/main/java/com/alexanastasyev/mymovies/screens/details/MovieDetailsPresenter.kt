@@ -91,4 +91,8 @@ class MovieDetailsPresenter(
     fun disposeDisposable() {
         compositeDisposable.dispose()
     }
+
+    fun closeDatabase() {
+        database.close()
+    }
 }

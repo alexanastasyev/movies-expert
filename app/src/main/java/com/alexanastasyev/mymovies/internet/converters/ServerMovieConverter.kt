@@ -2,6 +2,7 @@ package com.alexanastasyev.mymovies.internet.converters
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.Room.databaseBuilder
 import com.alexanastasyev.mymovies.data.Movie
 import com.alexanastasyev.mymovies.database.AppDatabase
 import com.alexanastasyev.mymovies.database.DatabaseUtils
@@ -32,11 +33,13 @@ object ServerMovieConverter {
     }
 
     private fun isMovieFavorite(id: Int, context: Context): Boolean {
-        val database = Room.databaseBuilder(
+        val database = databaseBuilder(
             context,
             AppDatabase::class.java,
             DatabaseUtils.DATABASE_NAME
         ).fallbackToDestructiveMigration().build()
-        return database.moviesDao().exist(id)
+        val result = database.moviesDao().exist(id)
+        database.close()
+        return result
     }
 }

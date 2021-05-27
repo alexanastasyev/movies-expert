@@ -150,6 +150,7 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
 
     override fun onDestroy() {
         presenter.disposeDisposable()
+        presenter.closeDatabase()
         super.onDestroy()
     }
 }
