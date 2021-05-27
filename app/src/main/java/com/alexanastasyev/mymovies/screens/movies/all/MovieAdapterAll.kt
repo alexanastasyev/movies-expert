@@ -20,6 +20,10 @@ class MovieAdapterAll : RecyclerView.Adapter<MovieAdapterAll.MovieViewHolder>() 
         movies.addAll(newMovies)
     }
 
+    fun clear() {
+        movies.clear()
+    }
+
     class MovieViewHolder(itemView: View, onMovieClickListener: OnMovieClickListener? = null) : RecyclerView.ViewHolder(itemView) {
         var imageViewMoviePicture: ImageView? = null
         var textViewMovieTitle: TextView? = null

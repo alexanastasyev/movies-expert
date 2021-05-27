@@ -31,4 +31,12 @@ interface MovieServerInterface {
         @Query("api_key") apiKey: String = NetworkUtils.API_KEY,
         @Query("language") language: String = NetworkUtils.DEFAULT_LANGUAGE
     ): Call<ServerMovieModel>
+
+    @GET("search/movie")
+    fun searchMovies(
+        @Query("query") query: String,
+        @Query("api_key") apiKey: String = NetworkUtils.API_KEY,
+        @Query("language") language: String = NetworkUtils.DEFAULT_LANGUAGE,
+        @Query("region") region: String = NetworkUtils.DEFAULT_REGION
+    ): Call<GetMoviesResponse>
 }
