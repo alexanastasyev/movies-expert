@@ -1,7 +1,6 @@
 package com.alexanastasyev.mymovies.internet.converters
 
 import android.content.Context
-import androidx.room.Room
 import androidx.room.Room.databaseBuilder
 import com.alexanastasyev.mymovies.data.Movie
 import com.alexanastasyev.mymovies.database.AppDatabase
@@ -18,11 +17,17 @@ object ServerMovieConverter {
 
     fun convertModelsToMovies(serverMovieModels: List<ServerMovieModel>, context: Context): List<Movie> {
        return serverMovieModels.map { serverMovie ->
-           val dates = serverMovie.date.split(DATE_SEPARATOR)
+           @Suppress("UselessCallOnNotNull")
+           val date = if (serverMovie.date.isNullOrEmpty()) {
+               ""
+           } else {
+               val dates = serverMovie.date.split(DATE_SEPARATOR)
+               "${dates[DATE_DAY_INDEX]}.${dates[DATE_MONTH_INDEX]}.${dates[DATE_YEAR_INDEX]}"
+           }
            Movie(
                id = serverMovie.id,
                title = serverMovie.title,
-               date = "${dates[DATE_DAY_INDEX]}.${dates[DATE_MONTH_INDEX]}.${dates[DATE_YEAR_INDEX]}",
+               date = date,
                rating = (serverMovie.rating * RATING_FACTOR).toInt(),
                description = serverMovie.description,
                portraitPicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_PORTRAIT_SIZE + serverMovie.smallPicturePath,

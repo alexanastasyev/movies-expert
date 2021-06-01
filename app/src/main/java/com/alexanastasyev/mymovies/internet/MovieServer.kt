@@ -1,6 +1,7 @@
 package com.alexanastasyev.mymovies.internet
 
 import android.content.Context
+import android.util.Log
 import com.alexanastasyev.mymovies.data.Movie
 import com.alexanastasyev.mymovies.internet.converters.ServerMovieConverter
 

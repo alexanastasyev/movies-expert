@@ -9,8 +9,13 @@ import io.reactivex.schedulers.Schedulers
 
 class SearchMoviesPresenter(private val view: SearchMoviesView) {
     private val compositeDisposable = CompositeDisposable()
+    private var isLoading = false
 
     fun searchMovie(query: String, context: Context) {
+        if (isLoading) {
+            return
+        }
+        isLoading = true
         val disposable = Single.fromCallable { MovieServer.searchMovie(query, context) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -20,8 +25,10 @@ class SearchMoviesPresenter(private val view: SearchMoviesView) {
                 } else {
                     view.showError()
                 }
+                isLoading = false
             }, {
                 view.showError()
+                isLoading = false
             })
         compositeDisposable.add(disposable)
     }

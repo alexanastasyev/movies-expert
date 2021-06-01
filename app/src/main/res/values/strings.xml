@@ -21,4 +21,6 @@
     <string name="source">Источник:</string>
     <string name="input_movie_title">Введите название фильма</string>
     <string name="error_search">Ошибка поиска!</string>
+    <string name="movies_not_found">Фильмы не найдены</string>
+    <string name="button_search">Кнопка поиска</string>
 </resources>
