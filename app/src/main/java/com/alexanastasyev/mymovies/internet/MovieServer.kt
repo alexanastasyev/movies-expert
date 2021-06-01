@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.alexanastasyev.mymovies.data.Movie
 import com.alexanastasyev.mymovies.internet.converters.ServerMovieConverter
+import java.util.*
 
 object MovieServer {
     private val movieService = RetrofitMovieServer.getInstance()
@@ -18,6 +19,19 @@ object MovieServer {
         val movieModels =  response?.movieModels
         return if (movieModels != null) {
             ServerMovieConverter.convertModelsToMovies(movieModels.filter { it.votesAmount > NetworkUtils.MIN_VOTES }, context)
+        } else {
+            null
+        }
+    }
+
+    fun getNewMovies(page: Int, context: Context): List<Movie>? {
+        val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+
+        val response = movieService.getNewMovies(page = page).execute().body()
+        val movieModels =  response?.movieModels
+        return if (movieModels != null) {
+            ServerMovieConverter.convertModelsToMovies(movieModels.filter {
+                it.date.split(NetworkUtils.DATE_DELIMITER)[NetworkUtils.DATE_YEAR_INDEX].toInt() == currentYear }, context)
         } else {
             null
         }

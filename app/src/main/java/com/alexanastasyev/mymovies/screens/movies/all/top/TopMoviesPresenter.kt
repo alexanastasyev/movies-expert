@@ -2,12 +2,13 @@ package com.alexanastasyev.mymovies.screens.movies.all.top
 
 import android.content.Context
 import com.alexanastasyev.mymovies.internet.MovieServer
+import com.alexanastasyev.mymovies.screens.movies.all.MoviesView
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class TopMoviesPresenter(private val view: TopMoviesView) {
+class TopMoviesPresenter(private val view: MoviesView) {
 
     companion object {
         private const val MAX_PAGE = 1000

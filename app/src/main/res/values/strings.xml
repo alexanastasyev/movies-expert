@@ -2,7 +2,7 @@
     <string name="app_name">Киноэксперт</string>
     <string name="movies_all">Все фильмы</string>
     <string name="movies_favorite">Избранное</string>
-    <string name="movies_popular">Популярные</string>
+    <string name="movies_popular">Тренды</string>
     <string name="movies_best">Лучшие</string>
     <string name="error_loading_movies">Ошибка загрузки списка фильмов!</string>
     <string name="movie_picture">Фотография фильма</string>
@@ -23,4 +23,5 @@
     <string name="error_search">Ошибка поиска!</string>
     <string name="movies_not_found">Фильмы не найдены</string>
     <string name="button_search">Кнопка поиска</string>
+    <string name="movies_new">Новые</string>
 </resources>

@@ -25,6 +25,13 @@ interface MovieServerInterface {
         @Query("region") region: String = NetworkUtils.DEFAULT_REGION
     ): Call<GetMoviesResponse>
 
+    @GET("movie/now_playing")
+    fun getNewMovies(
+        @Query("page") page: Int,
+        @Query("api_key") apiKey: String = NetworkUtils.API_KEY,
+        @Query("language") language: String = NetworkUtils.DEFAULT_LANGUAGE
+    ): Call<GetMoviesResponse>
+
     @GET("movie/{movie_id}")
     fun getMovieById(
         @Path("movie_id") movieId: Int,

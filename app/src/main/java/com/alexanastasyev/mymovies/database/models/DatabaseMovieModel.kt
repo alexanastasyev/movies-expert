@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 class DatabaseMovieModel(
 
     @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "id")
     val id: Int,
 
     @ColumnInfo(name = "title")

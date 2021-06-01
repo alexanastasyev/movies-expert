@@ -1,4 +1,4 @@
-package com.alexanastasyev.mymovies.screens.movies.all.popular
+package com.alexanastasyev.mymovies.screens.movies.all.new
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,21 +10,21 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.alexanastasyev.mymovies.data.Movie
-import com.alexanastasyev.mymovies.screens.movies.all.MovieAdapterAll
 import com.alexanastasyev.mymovies.R
+import com.alexanastasyev.mymovies.data.Movie
 import com.alexanastasyev.mymovies.screens.ActivityUtils
 import com.alexanastasyev.mymovies.screens.details.MovieDetailsActivity
 import com.alexanastasyev.mymovies.screens.movies.OnMovieClickListener
+import com.alexanastasyev.mymovies.screens.movies.all.MovieAdapterAll
 import com.alexanastasyev.mymovies.screens.movies.all.MoviesView
 
-class PopularMoviesFragment : Fragment(), MoviesView {
+class NewMoviesFragment : Fragment(), MoviesView {
 
     companion object {
         private const val PAGINATION_NUMBER = 5
     }
 
-    private val presenter = PopularMoviesPresenter(this)
+    private val presenter = NewMoviesPresenter(this)
 
     private lateinit var startingProgressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView

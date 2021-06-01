@@ -15,4 +15,10 @@ object NetworkUtils {
     const val MIN_VOTES = 500
 
     const val SEARCH_DELAY_MILLISECONDS = 500L
+
+    const val DATE_DELIMITER = "-"
+
+    const val DATE_DAY_INDEX = 2
+    const val DATE_MONTH_INDEX = 1
+    const val DATE_YEAR_INDEX = 0
 }

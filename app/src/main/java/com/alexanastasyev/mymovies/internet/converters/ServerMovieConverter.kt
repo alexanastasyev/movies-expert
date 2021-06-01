@@ -10,10 +10,6 @@ import com.alexanastasyev.mymovies.internet.responses.ServerMovieModel
 
 object ServerMovieConverter {
     private const val RATING_FACTOR = 10
-    private const val DATE_SEPARATOR = "-"
-    private const val DATE_DAY_INDEX = 2
-    private const val DATE_MONTH_INDEX = 1
-    private const val DATE_YEAR_INDEX = 0
 
     fun convertModelsToMovies(serverMovieModels: List<ServerMovieModel>, context: Context): List<Movie> {
        return serverMovieModels.map { serverMovie ->
@@ -21,8 +17,8 @@ object ServerMovieConverter {
            val date = if (serverMovie.date.isNullOrEmpty()) {
                ""
            } else {
-               val dates = serverMovie.date.split(DATE_SEPARATOR)
-               "${dates[DATE_DAY_INDEX]}.${dates[DATE_MONTH_INDEX]}.${dates[DATE_YEAR_INDEX]}"
+               val dates = serverMovie.date.split(NetworkUtils.DATE_DELIMITER)
+               "${dates[NetworkUtils.DATE_DAY_INDEX]}.${dates[NetworkUtils.DATE_MONTH_INDEX]}.${dates[NetworkUtils.DATE_YEAR_INDEX]}"
            }
            Movie(
                id = serverMovie.id,

@@ -1,4 +1,4 @@
-package com.alexanastasyev.mymovies.screens.movies.all.popular
+package com.alexanastasyev.mymovies.screens.movies.all.new
 
 import android.content.Context
 import com.alexanastasyev.mymovies.internet.MovieServer
@@ -8,10 +8,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class PopularMoviesPresenter(private val view: MoviesView) {
-
+class NewMoviesPresenter(private val view: MoviesView) {
     companion object {
-        private const val MAX_PAGE = 1000
+        private const val MAX_PAGE = 200
     }
 
     private val compositeDisposable = CompositeDisposable()
@@ -30,7 +29,7 @@ class PopularMoviesPresenter(private val view: MoviesView) {
             view.showError()
             return
         }
-        val disposable = Single.fromCallable { MovieServer.getPopularMovies(lastPageIndex, context) }
+        val disposable = Single.fromCallable { MovieServer.getNewMovies(lastPageIndex, context) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ movies ->

@@ -16,8 +16,9 @@ import com.alexanastasyev.mymovies.screens.ActivityUtils
 import com.alexanastasyev.mymovies.screens.details.MovieDetailsActivity
 import com.alexanastasyev.mymovies.screens.movies.OnMovieClickListener
 import com.alexanastasyev.mymovies.screens.movies.all.MovieAdapterAll
+import com.alexanastasyev.mymovies.screens.movies.all.MoviesView
 
-class TopMoviesFragment : Fragment(), TopMoviesView {
+class TopMoviesFragment : Fragment(), MoviesView {
 
     companion object {
         private const val PAGINATION_NUMBER = 5
