@@ -96,6 +96,9 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
         if (movies.isEmpty()) {
             findViewById<TextView>(R.id.similar_movies_not_found).visibility = View.VISIBLE
         }
+        adapter.movies.clear()
+        adapter.addMovies(movies)
+        adapter.notifyDataSetChanged()
         hideLoadingSimilar()
     }
 

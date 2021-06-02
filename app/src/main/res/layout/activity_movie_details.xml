@@ -174,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="invisible"
                 android:layout_margin="20dp"
-                android:text="@string/imilar_movies_not_found"
+                android:text="@string/similar_movies_not_found"
                 android:textSize="18sp"
                 android:textColor="@color/grey"
                 android:textStyle="italic"
