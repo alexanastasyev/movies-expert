@@ -35,10 +35,26 @@ class MovieDetailsPresenter(
                     loadMovieDetailsFromServer(movieId, context)
                 }
             }, {
-                view.showError()
+                view.showErrorMovieInfo()
             })
 
         compositeDisposable.add((disposable))
+    }
+
+    fun loadSimilarMovies(movieId: Int, context: Context) {
+        val disposable = Single.fromCallable { MovieServer.getSimilarMovies(movieId, context) }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ movies ->
+                if (movies != null) {
+                    view.showSimilarMovies(movies)
+                } else {
+                    view.showErrorSimilarMovies()
+                }
+            }, {
+                view.showErrorSimilarMovies()
+            })
+        compositeDisposable.add(disposable)
     }
 
     private fun loadMovieDetailsFromDatabase(movieId: Int) {
@@ -49,10 +65,10 @@ class MovieDetailsPresenter(
                if (model != null) {
                    view.showMovieInfo(DatabaseMovieConverter.convertModelsToMovies(listOf(model))[0])
                } else {
-                   view.showError()
+                   view.showErrorMovieInfo()
                }
             }, {
-                view.showError()
+                view.showErrorMovieInfo()
             })
         compositeDisposable.add(disposable)
     }
@@ -65,10 +81,10 @@ class MovieDetailsPresenter(
                 if (movie != null) {
                     view.showMovieInfo(movie)
                 } else {
-                    view.showError()
+                    view.showErrorMovieInfo()
                 }
             }, {
-                view.showError()
+                view.showErrorMovieInfo()
             })
         compositeDisposable.add(disposable)
     }

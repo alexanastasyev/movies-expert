@@ -39,6 +39,13 @@ interface MovieServerInterface {
         @Query("language") language: String = NetworkUtils.DEFAULT_LANGUAGE
     ): Call<GetMovieDetailsResponse>
 
+    @GET("movie/{movie_id}/similar")
+    fun getSimilarMovies(
+            @Path("movie_id") movieId: Int,
+            @Query("api_key") apiKey: String = NetworkUtils.API_KEY,
+            @Query("language") language: String = NetworkUtils.DEFAULT_LANGUAGE
+    ): Call<GetMoviesResponse>
+
     @GET("search/movie")
     fun searchMovies(
         @Query("query") query: String,

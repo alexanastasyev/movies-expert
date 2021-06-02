@@ -9,9 +9,12 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alexanastasyev.mymovies.data.Movie
 import com.alexanastasyev.mymovies.R
 import com.alexanastasyev.mymovies.screens.ActivityUtils
+import com.alexanastasyev.mymovies.screens.movies.OnMovieClickListener
 import com.squareup.picasso.Picasso
 
 class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
@@ -22,17 +25,37 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
 
     private lateinit var movie: Movie
     private lateinit var presenter: MovieDetailsPresenter
+    private lateinit var recyclerView: RecyclerView
+    private val adapter = MovieAdapterSimilar()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
 
+        recyclerView = findViewById(R.id.recycler_view_similar_movies)
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        adapter.onMovieClickListener = object : OnMovieClickListener {
+            override fun onMovieClick(position: Int) {
+                val movieId = adapter.movies[position].id
+                val intent = Intent(applicationContext, MovieDetailsActivity::class.java).apply {
+                    putExtra(ActivityUtils.MOVIE_ID_KEY, movieId)
+                }
+                startActivity(intent)
+            }
+        }
+        recyclerView.adapter = adapter
+
         presenter = MovieDetailsPresenter(this, this)
 
         showLoading()
+        showLoadingSimilar()
         getIdAndLoadMovieDetails(intent)
         setOnBackArrowExit()
         setOnStarClickListener()
+    }
+
+    private fun showLoadingSimilar() {
+        findViewById<ProgressBar>(R.id.similar_movies_progress_bar).visibility = View.VISIBLE
     }
 
     private fun setOnStarClickListener() {
@@ -69,6 +92,17 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
         fillFields()
     }
 
+    override fun showSimilarMovies(movies: List<Movie>) {
+        adapter.movies.clear()
+        adapter.addMovies(movies)
+        adapter.notifyDataSetChanged()
+        hideLoadingSimilar()
+    }
+
+    private fun hideLoadingSimilar() {
+        findViewById<ProgressBar>(R.id.similar_movies_progress_bar).visibility = View.INVISIBLE
+    }
+
     private fun fillFields() {
         val movieImageView = findViewById<ImageView>(R.id.movie_details_image)
         Picasso.get()
@@ -99,17 +133,22 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
         findViewById<ImageView>(R.id.movie_details_star).setImageResource(R.drawable.star_not_favorite)
     }
 
-    override fun showError() {
+    override fun showErrorMovieInfo() {
         showLoading()
         showMessage(getString(R.string.error_cannot_load_movie_details))
+    }
+
+    override fun showErrorSimilarMovies() {
+        showMessage(getString(R.string.error_loading_similar_movies))
     }
 
     private fun getIdAndLoadMovieDetails(intent: Intent) {
         val movieId = intent.getIntExtra(ActivityUtils.MOVIE_ID_KEY, INVALID_MOVIE_ID)
         if (isIdValid(movieId)) {
             presenter.loadMovieDetails(movieId, this)
+            presenter.loadSimilarMovies(movieId, this)
         } else {
-            showError()
+            showErrorMovieInfo()
         }
     }
 

@@ -4,5 +4,7 @@ import com.alexanastasyev.mymovies.data.Movie
 
 interface MovieDetailsView {
     fun showMovieInfo(movie: Movie)
-    fun showError()
+    fun showSimilarMovies(movies: List<Movie>)
+    fun showErrorMovieInfo()
+    fun showErrorSimilarMovies()
 }

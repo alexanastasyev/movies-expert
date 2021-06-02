@@ -45,6 +45,11 @@ object MovieServer {
         }
     }
 
+    fun getSimilarMovies(movieId: Int, context: Context): List<Movie>? {
+        val response = movieService.getSimilarMovies(movieId = movieId).execute().body()
+        return response?.movieModels?.let { ServerMovieConverter.convertModelsToMovies(it, context) }
+    }
+
     fun searchMovie(query: String, context: Context): List<Movie>? {
         val response = movieService.searchMovies(query = query).execute().body()
         return response?.movieModels?.let { ServerMovieConverter.convertModelsToMovies(it, context) }
