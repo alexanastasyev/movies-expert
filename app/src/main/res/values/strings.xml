@@ -24,4 +24,6 @@
     <string name="movies_not_found">Фильмы не найдены</string>
     <string name="button_search">Кнопка поиска</string>
     <string name="movies_new">Новые</string>
+    <string name="genres">Жанры:</string>
+    <string name="no_favorites">Здесь пока ничего нет</string>
 </resources>

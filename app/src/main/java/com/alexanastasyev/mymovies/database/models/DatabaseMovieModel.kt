@@ -30,5 +30,8 @@ class DatabaseMovieModel(
     var landscapePicturePath: String,
 
     @ColumnInfo(name = "isFavorite")
-    var isFavorite: Boolean
+    var isFavorite: Boolean,
+
+    @ColumnInfo(name = "genres")
+    val genres: String
 )

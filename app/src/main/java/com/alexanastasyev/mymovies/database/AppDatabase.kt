@@ -7,7 +7,7 @@ import com.alexanastasyev.mymovies.database.models.DatabaseMovieModel
 
 @Database(
     entities = [DatabaseMovieModel::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

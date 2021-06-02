@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -23,6 +24,7 @@ class FavoriteMoviesFragment : Fragment(), FavoriteMoviesView {
 
     private lateinit var presenter: FavoriteMoviesPresenter
     private lateinit var recyclerView: RecyclerView
+    private lateinit var textViewNoFavorites: TextView
     private val adapter = MovieAdapterFavorite()
 
     override fun onCreateView(
@@ -34,6 +36,7 @@ class FavoriteMoviesFragment : Fragment(), FavoriteMoviesView {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        textViewNoFavorites = view.findViewById(R.id.text_view_no_favorites)
         recyclerView = view.findViewById(R.id.fragment_recycler_movies_favorite)
         recyclerView.layoutManager = GridLayoutManager(this.requireContext(), COLUMNS_AMOUNT)
         adapter.onMovieClickListener = object : OnMovieClickListener {
@@ -67,6 +70,11 @@ class FavoriteMoviesFragment : Fragment(), FavoriteMoviesView {
     }
 
     override fun showMovies(movies: List<Movie>) {
+        if (movies.isEmpty()) {
+            textViewNoFavorites.visibility = View.VISIBLE
+        } else {
+            textViewNoFavorites.visibility = View.INVISIBLE
+        }
         adapter.movies.clear()
         adapter.addMovies(movies)
         adapter.notifyDataSetChanged()

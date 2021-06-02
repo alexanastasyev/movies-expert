@@ -1,7 +1,6 @@
 package com.alexanastasyev.mymovies.internet
 
 import android.content.Context
-import android.util.Log
 import com.alexanastasyev.mymovies.data.Movie
 import com.alexanastasyev.mymovies.internet.converters.ServerMovieConverter
 import java.util.*
@@ -40,7 +39,7 @@ object MovieServer {
     fun getMovieById(movieId: Int, context: Context): Movie? {
         val movieModel = movieService.getMovieById(movieId = movieId).execute().body()
         return if (movieModel != null) {
-            ServerMovieConverter.convertModelsToMovies(listOf(movieModel), context)[0]
+            ServerMovieConverter.convertModelToMovie(movieModel, context)
         } else {
             null
         }

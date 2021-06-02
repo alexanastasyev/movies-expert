@@ -25,7 +25,6 @@ class MovieDetailsPresenter(
     private val compositeDisposable = CompositeDisposable()
 
     fun loadMovieDetails(movieId: Int, context: Context) {
-
         val disposable = Single.fromCallable { database.moviesDao().exist(movieId) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

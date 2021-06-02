@@ -79,6 +79,7 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
         findViewById<TextView>(R.id.movie_details_date_edit).text = movie.date
         findViewById<TextView>(R.id.movie_details_rating_edit).text = movie.rating.toString()
         findViewById<TextView>(R.id.movie_details_description).text = movie.description
+        findViewById<TextView>(R.id.movie_details_genres_edit).text = movie.genres
         setStar()
     }
 

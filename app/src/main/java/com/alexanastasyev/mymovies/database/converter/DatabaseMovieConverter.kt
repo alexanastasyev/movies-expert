@@ -16,7 +16,8 @@ object DatabaseMovieConverter {
                 description = model.description,
                 portraitPicturePath = model.portraitPicturePath,
                 landscapePicturePath = model.landscapePicturePath,
-                isFavorite = model.isFavorite
+                isFavorite = model.isFavorite,
+                genres = model.genres
             ))
         }
         return result
@@ -33,7 +34,8 @@ object DatabaseMovieConverter {
                 description = movie.description,
                 portraitPicturePath = movie.portraitPicturePath,
                 landscapePicturePath = movie.landscapePicturePath,
-                isFavorite = movie.isFavorite
+                isFavorite = movie.isFavorite,
+                genres = movie.genres
             ))
         }
         return result

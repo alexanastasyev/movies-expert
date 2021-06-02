@@ -8,5 +8,6 @@ class Movie(
     val description: String,
     var portraitPicturePath: String,
     var landscapePicturePath: String,
-    var isFavorite: Boolean
+    var isFavorite: Boolean,
+    val genres: String
 )

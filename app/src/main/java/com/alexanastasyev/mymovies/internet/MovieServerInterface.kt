@@ -1,7 +1,7 @@
 package com.alexanastasyev.mymovies.internet
 
+import com.alexanastasyev.mymovies.internet.responses.GetMovieDetailsResponse
 import com.alexanastasyev.mymovies.internet.responses.GetMoviesResponse
-import com.alexanastasyev.mymovies.internet.responses.ServerMovieModel
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -37,7 +37,7 @@ interface MovieServerInterface {
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String = NetworkUtils.API_KEY,
         @Query("language") language: String = NetworkUtils.DEFAULT_LANGUAGE
-    ): Call<ServerMovieModel>
+    ): Call<GetMovieDetailsResponse>
 
     @GET("search/movie")
     fun searchMovies(
