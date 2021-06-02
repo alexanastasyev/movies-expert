@@ -22,6 +22,11 @@ object ServerMovieConverter {
                val dates = serverMovie.date.split(NetworkUtils.DATE_DELIMITER)
                "${dates[NetworkUtils.DATE_DAY_INDEX]}.${dates[NetworkUtils.DATE_MONTH_INDEX]}.${dates[NetworkUtils.DATE_YEAR_INDEX]}"
            }
+           val genres = if(!serverMovie.genreIds.isNullOrEmpty()) {
+               getGenresAsString(serverMovie.genreIds)
+           } else {
+               ""
+           }
            Movie(
                id = serverMovie.id,
                title = serverMovie.title,
@@ -31,30 +36,35 @@ object ServerMovieConverter {
                portraitPicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_PORTRAIT_SIZE + serverMovie.smallPicturePath,
                landscapePicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_LANDSCAPE_SIZE + serverMovie.bigPicturePath,
                isFavorite = isMovieFavorite(serverMovie.id, context),
-               genres = getGenresAsString(serverMovie.genreIds)
+               genres = genres
            )
        }
     }
 
     fun convertModelToMovie(serverMovie: GetMovieDetailsResponse, context: Context): Movie {
-            @Suppress("UselessCallOnNotNull")
-            val date = if (serverMovie.date.isNullOrEmpty()) {
-                ""
-            } else {
-                val dates = serverMovie.date.split(NetworkUtils.DATE_DELIMITER)
-                "${dates[NetworkUtils.DATE_DAY_INDEX]}.${dates[NetworkUtils.DATE_MONTH_INDEX]}.${dates[NetworkUtils.DATE_YEAR_INDEX]}"
-            }
-            return Movie(
-                id = serverMovie.id,
-                title = serverMovie.title,
-                date = date,
-                rating = (serverMovie.rating * RATING_FACTOR).toInt(),
-                description = serverMovie.description,
-                portraitPicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_PORTRAIT_SIZE + serverMovie.smallPicturePath,
-                landscapePicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_LANDSCAPE_SIZE + serverMovie.bigPicturePath,
-                isFavorite = isMovieFavorite(serverMovie.id, context),
-                genres = getGenresAsString(serverMovie.genres.map { it.id })
-            )
+        @Suppress("UselessCallOnNotNull")
+        val date = if (serverMovie.date.isNullOrEmpty()) {
+            ""
+        } else {
+            val dates = serverMovie.date.split(NetworkUtils.DATE_DELIMITER)
+            "${dates[NetworkUtils.DATE_DAY_INDEX]}.${dates[NetworkUtils.DATE_MONTH_INDEX]}.${dates[NetworkUtils.DATE_YEAR_INDEX]}"
+        }
+        val genres = if(!serverMovie.genres.isNullOrEmpty()) {
+            getGenresAsString(serverMovie.genres.map { it.id })
+        } else {
+            ""
+        }
+        return Movie(
+            id = serverMovie.id,
+            title = serverMovie.title,
+            date = date,
+            rating = (serverMovie.rating * RATING_FACTOR).toInt(),
+            description = serverMovie.description,
+            portraitPicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_PORTRAIT_SIZE + serverMovie.smallPicturePath,
+            landscapePicturePath = NetworkUtils.IMAGE_BASE_URL + NetworkUtils.IMAGE_LANDSCAPE_SIZE + serverMovie.bigPicturePath,
+            isFavorite = isMovieFavorite(serverMovie.id, context),
+            genres = genres
+        )
     }
 
     private fun getGenresAsString(genreIds: List<Int>): String {
