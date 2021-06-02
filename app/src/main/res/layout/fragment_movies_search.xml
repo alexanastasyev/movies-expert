@@ -15,6 +15,7 @@
         android:inputType="text"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:imeOptions="actionDone"
         app:backgroundTint="@color/light_blue"
         app:background="@color/light_blue"
         app:layout_constraintTop_toTopOf="parent"
