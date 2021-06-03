@@ -119,6 +119,7 @@ class SearchMoviesFragment : Fragment(), SearchMoviesView {
 
     override fun showError() {
         Toast.makeText(view?.context, getString(R.string.error_search), Toast.LENGTH_SHORT).show()
+        startingProgressBar.visibility = View.GONE
     }
 
     private fun showLoading() {

@@ -95,6 +95,7 @@ class PopularMoviesFragment : Fragment(), MoviesView {
 
     override fun showError() {
         Toast.makeText(view?.context, getString(R.string.error_loading_movies), Toast.LENGTH_SHORT).show()
+        hideLoading()
     }
 
     private fun showLoading() {

@@ -138,12 +138,13 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
     }
 
     override fun showErrorMovieInfo() {
-        showLoading()
+        hideMovieLayout()
         showMessage(getString(R.string.error_cannot_load_movie_details))
     }
 
     override fun showErrorSimilarMovies() {
         showMessage(getString(R.string.error_loading_similar_movies))
+        hideLoadingSimilar()
     }
 
     private fun getIdAndLoadMovieDetails(intent: Intent) {
