@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.alexanastasyev.mymovies.R
+import com.alexanastasyev.mymovies.screens.ActivityUtils
 import com.alexanastasyev.mymovies.screens.movies.all.AllMoviesFragment
 import com.alexanastasyev.mymovies.screens.movies.favorite.FavoriteMoviesFragment
 import com.alexanastasyev.mymovies.screens.search.SearchMoviesFragment
@@ -51,6 +52,11 @@ class StartActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             showAllMoviesFragment()
         }
+    }
+
+    override fun onResume() {
+        ActivityUtils.closeAllActivityDetails = false
+        super.onResume()
     }
 
     private fun disableNightMode() {

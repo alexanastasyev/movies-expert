@@ -41,6 +41,17 @@
                 app:layout_constraintEnd_toStartOf="@id/movie_details_image"/>
 
             <ImageView
+                android:id="@+id/movie_details_home"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/home"
+                android:contentDescription="@string/button_back"
+                app:layout_constraintTop_toTopOf="@id/movie_details_image"
+                app:layout_constraintBottom_toTopOf="@id/movie_details_image"
+                app:layout_constraintStart_toEndOf="@id/movie_details_image"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
                 android:id="@+id/movie_details_star"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

@@ -51,6 +51,7 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
         showLoadingSimilar()
         getIdAndLoadMovieDetails(intent)
         setOnBackArrowExit()
+        setOnHomeExit()
         setOnStarClickListener()
     }
 
@@ -165,6 +166,13 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
         }
     }
 
+    private fun setOnHomeExit() {
+        findViewById<ImageView>(R.id.movie_details_home).setOnClickListener {
+            ActivityUtils.closeAllActivityDetails = true
+            this.finish()
+        }
+    }
+
     private fun showLoading() {
         hideMovieLayout()
         showProgressBar()
@@ -189,6 +197,13 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
 
     private fun hideMovieLayout() {
         findViewById<ConstraintLayout>(R.id.movie_details_layout).visibility = View.GONE
+    }
+
+    override fun onResume() {
+        if (ActivityUtils.closeAllActivityDetails) {
+            this.finish()
+        }
+        super.onResume()
     }
 
     override fun onDestroy() {
