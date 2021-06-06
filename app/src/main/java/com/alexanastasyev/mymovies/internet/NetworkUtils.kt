@@ -22,4 +22,6 @@ object NetworkUtils {
     const val DATE_DAY_INDEX_SERVER = 2
     const val DATE_MONTH_INDEX_SERVER = 1
     const val DATE_YEAR_INDEX_SERVER = 0
+
+    const val MOVIES_PER_PAGE = 20
 }

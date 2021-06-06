@@ -17,12 +17,15 @@ import com.alexanastasyev.mymovies.internet.NetworkUtils
 import com.alexanastasyev.mymovies.screens.ActivityUtils
 import com.alexanastasyev.mymovies.screens.details.MovieDetailsActivity
 import com.alexanastasyev.mymovies.screens.movies.OnMovieClickListener
-import com.alexanastasyev.mymovies.screens.movies.all.MovieAdapterAll
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 import java.util.concurrent.TimeUnit
 
 class SearchMoviesFragment : Fragment(), SearchMoviesView {
+
+    companion object {
+        const val PAGINATION_NUMBER = 5
+    }
 
     private val presenter = SearchMoviesPresenter(this)
 
@@ -31,12 +34,15 @@ class SearchMoviesFragment : Fragment(), SearchMoviesView {
     private lateinit var textViewNotFound: TextView
     private lateinit var adapter: MovieAdapterSearch
 
+    private var paginationEnabled = true
+    private var currentQuery = ""
+
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_movies_search, container, false)
     }
@@ -65,11 +71,33 @@ class SearchMoviesFragment : Fragment(), SearchMoviesView {
 
         view.findViewById<ImageView>(R.id.button_search).setOnClickListener {
             val query = editTextSearch.text.toString().trim()
-            if (query != "") {
+            if (query != "" && query != currentQuery) {
                 showLoading()
-                presenter.searchMovie(query, view.context)
+                presenter.searchNewMovie(query, view.context)
+                currentQuery = query
             }
         }
+
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (paginationEnabled) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    val totalItemCount = recyclerView.layoutManager?.itemCount
+                    val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+
+                    if (totalItemCount != null) {
+                        if (totalItemCount - lastVisibleItemPosition <= PAGINATION_NUMBER) {
+                            presenter.loadNextPage(requireContext())
+                        }
+
+                        if (lastVisibleItemPosition == totalItemCount - 1) {
+                            startingProgressBar.visibility = View.VISIBLE
+                        }
+                    }
+                }
+            }
+        })
 
         super.onViewCreated(view, savedInstanceState)
     }
@@ -90,7 +118,8 @@ class SearchMoviesFragment : Fragment(), SearchMoviesView {
             .debounce(NetworkUtils.SEARCH_DELAY_MILLISECONDS, TimeUnit.MILLISECONDS)
             .subscribe { str ->
                 if (str.isNotEmpty()) {
-                    presenter.searchMovie(str, context)
+                    presenter.searchNewMovie(str, context)
+                    currentQuery = str
                 }
             }
         compositeDisposable.add(disposable)
@@ -107,7 +136,7 @@ class SearchMoviesFragment : Fragment(), SearchMoviesView {
         super.onDestroy()
     }
 
-    override fun showMovies(movies: List<Movie>) {
+    override fun showNewMovies(movies: List<Movie>) {
         hideLoading()
         recyclerView.scrollToPosition(0)
         adapter.clear()
@@ -117,6 +146,20 @@ class SearchMoviesFragment : Fragment(), SearchMoviesView {
         if (movies.isEmpty()) {
             textViewNotFound.visibility = View.VISIBLE
         }
+    }
+
+    override fun addMovies(movies: List<Movie>) {
+        hideLoading()
+        adapter.addMovies(movies)
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun stopPagination() {
+        paginationEnabled = false
+    }
+
+    override fun resumePagination() {
+        paginationEnabled = true
     }
 
     override fun showError() {

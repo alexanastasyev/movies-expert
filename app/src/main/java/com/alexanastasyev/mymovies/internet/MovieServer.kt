@@ -50,8 +50,8 @@ object MovieServer {
         return response?.movieModels?.let { ServerMovieConverter.convertModelsToMovies(it, context) }
     }
 
-    fun searchMovie(query: String, context: Context): List<Movie>? {
-        val response = movieService.searchMovies(query = query).execute().body()
+    fun searchMovie(query: String, page: Int, context: Context): List<Movie>? {
+        val response = movieService.searchMovies(query = query, page = page).execute().body()
         return response?.movieModels?.let { ServerMovieConverter.convertModelsToMovies(it, context) }
     }
 }
