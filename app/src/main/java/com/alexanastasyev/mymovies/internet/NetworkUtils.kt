@@ -16,9 +16,10 @@ object NetworkUtils {
 
     const val SEARCH_DELAY_MILLISECONDS = 500L
 
-    const val DATE_DELIMITER = "-"
+    const val DATE_DELIMITER_SERVER = "-"
+    const val DATE_DELIMITER = "."
 
-    const val DATE_DAY_INDEX = 2
-    const val DATE_MONTH_INDEX = 1
-    const val DATE_YEAR_INDEX = 0
+    const val DATE_DAY_INDEX_SERVER = 2
+    const val DATE_MONTH_INDEX_SERVER = 1
+    const val DATE_YEAR_INDEX_SERVER = 0
 }

@@ -14,4 +14,10 @@
 
     <color name="transparent_grey">#80CCCCCC</color>
     <color name="grey">#CCCCCC</color>
+
+    <color name="rating_awful">#FF0000</color>
+    <color name="rating_low">#FF8A00</color>
+    <color name="rating_medium">#FFF500</color>
+    <color name="rating_high">#14FF00</color>
+    <color name="rating_ultra">#BBE1FA</color>
 </resources>

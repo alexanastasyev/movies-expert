@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent_grey"
+    android:layout_margin="4dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/movie_image_search"
+        android:layout_width="135dp"
+        android:layout_height="200dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/movie_picture"
+        android:scaleType="centerCrop"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_rating_background"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/rating_background"
+        android:layout_margin="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/text_view_rating"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@id/image_rating_background"
+        app:layout_constraintBottom_toBottomOf="@id/image_rating_background"
+        app:layout_constraintStart_toStartOf="@id/image_rating_background"
+        app:layout_constraintEnd_toEndOf="@id/image_rating_background"/>
+
+    <TextView
+        android:id="@+id/movie_name_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/dark_blue"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        android:layout_margin="4dp"
+        app:layout_constraintEnd_toStartOf="@id/image_rating_background"
+        app:layout_constraintStart_toEndOf="@id/movie_image_search"
+        app:layout_constraintTop_toTopOf="@id/movie_image_search"/>
+
+    <TextView
+        android:id="@+id/movie_year_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/dark_blue"
+        android:textSize="16sp"
+        android:layout_margin="4dp"
+        app:layout_constraintEnd_toStartOf="@id/image_rating_background"
+        app:layout_constraintStart_toEndOf="@id/movie_image_search"
+        app:layout_constraintTop_toBottomOf="@id/movie_name_search"/>
+
+    <TextView
+        android:id="@+id/movie_genres_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/dark_blue"
+        android:textStyle="italic"
+        android:layout_margin="4dp"
+        app:layout_constraintTop_toBottomOf="@id/movie_year_search"
+        app:layout_constraintStart_toEndOf="@id/movie_image_search"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

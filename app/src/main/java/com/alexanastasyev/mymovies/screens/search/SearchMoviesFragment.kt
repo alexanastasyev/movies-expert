@@ -29,7 +29,7 @@ class SearchMoviesFragment : Fragment(), SearchMoviesView {
     private lateinit var startingProgressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
     private lateinit var textViewNotFound: TextView
-    private val adapter = MovieAdapterAll()
+    private lateinit var adapter: MovieAdapterSearch
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -42,6 +42,8 @@ class SearchMoviesFragment : Fragment(), SearchMoviesView {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        adapter = MovieAdapterSearch(view.context)
+
         startingProgressBar = view.findViewById(R.id.progress_bar_search)
         recyclerView = view.findViewById(R.id.fragment_recycler_movies_search)
         textViewNotFound = view.findViewById(R.id.text_view_movie_not_found)

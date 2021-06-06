@@ -19,8 +19,8 @@ object ServerMovieConverter {
            val date = if (serverMovie.date.isNullOrEmpty()) {
                ""
            } else {
-               val dates = serverMovie.date.split(NetworkUtils.DATE_DELIMITER)
-               "${dates[NetworkUtils.DATE_DAY_INDEX]}.${dates[NetworkUtils.DATE_MONTH_INDEX]}.${dates[NetworkUtils.DATE_YEAR_INDEX]}"
+               val dates = serverMovie.date.split(NetworkUtils.DATE_DELIMITER_SERVER)
+               "${dates[NetworkUtils.DATE_DAY_INDEX_SERVER]}.${dates[NetworkUtils.DATE_MONTH_INDEX_SERVER]}.${dates[NetworkUtils.DATE_YEAR_INDEX_SERVER]}"
            }
            val genres = if(!serverMovie.genreIds.isNullOrEmpty()) {
                getGenresAsString(serverMovie.genreIds)
@@ -46,8 +46,8 @@ object ServerMovieConverter {
         val date = if (serverMovie.date.isNullOrEmpty()) {
             ""
         } else {
-            val dates = serverMovie.date.split(NetworkUtils.DATE_DELIMITER)
-            "${dates[NetworkUtils.DATE_DAY_INDEX]}.${dates[NetworkUtils.DATE_MONTH_INDEX]}.${dates[NetworkUtils.DATE_YEAR_INDEX]}"
+            val dates = serverMovie.date.split(NetworkUtils.DATE_DELIMITER_SERVER)
+            "${dates[NetworkUtils.DATE_DAY_INDEX_SERVER]}.${dates[NetworkUtils.DATE_MONTH_INDEX_SERVER]}.${dates[NetworkUtils.DATE_YEAR_INDEX_SERVER]}"
         }
         val genres = if(!serverMovie.genres.isNullOrEmpty()) {
             getGenresAsString(serverMovie.genres.map { it.id })
