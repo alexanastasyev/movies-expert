@@ -12,7 +12,7 @@ object NetworkUtils {
 
     const val API_KEY = "d0c314843449830d4310a88c038551d5"
 
-    const val MIN_VOTES = 500
+    const val MIN_VOTES = 10
 
     const val SEARCH_DELAY_MILLISECONDS = 500L
 
