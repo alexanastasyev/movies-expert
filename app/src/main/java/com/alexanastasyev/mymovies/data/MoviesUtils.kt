@@ -1,7 +1,7 @@
 package com.alexanastasyev.mymovies.data
 
 object MoviesUtils {
-    const val RATING_PLACEHOLDER = "-"
+    const val RATING_PLACEHOLDER = "0"
 
     const val ZERO_RATING = 0
     val AWFUL_RATING = 1..24

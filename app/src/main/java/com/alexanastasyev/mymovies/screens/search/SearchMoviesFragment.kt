@@ -108,7 +108,9 @@ class SearchMoviesFragment : Fragment(), SearchMoviesView {
             if (str.isNullOrEmpty()) {
                 hideAll()
             } else {
-                showLoading()
+                if (str.toString() != currentQuery) {
+                    showLoading()
+                }
             }
             textViewNotFound.visibility = View.GONE
             subject.onNext(str.toString().trim())
