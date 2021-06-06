@@ -30,7 +30,9 @@ object MovieServer {
         val movieModels =  response?.movieModels
         return if (movieModels != null) {
             ServerMovieConverter.convertModelsToMovies(movieModels.filter {
-                it.date.split(NetworkUtils.DATE_DELIMITER_SERVER)[NetworkUtils.DATE_YEAR_INDEX_SERVER].toInt() == currentYear }, context)
+                val movieYear = it.date.split(NetworkUtils.DATE_DELIMITER_SERVER)[NetworkUtils.DATE_YEAR_INDEX_SERVER].toInt()
+                movieYear == currentYear || movieYear == currentYear - 1
+            }, context)
         } else {
             null
         }
