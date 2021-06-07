@@ -35,6 +35,7 @@ class SearchMoviesFragment : Fragment(), SearchMoviesView {
     private lateinit var adapter: MovieAdapterSearch
 
     private var paginationEnabled = true
+
     private var currentQuery = ""
 
     private val compositeDisposable = CompositeDisposable()
@@ -69,15 +70,6 @@ class SearchMoviesFragment : Fragment(), SearchMoviesView {
         val editTextSearch = view.findViewById<EditText>(R.id.edit_search)
         addOnEditTextListener(editTextSearch, view.context)
 
-        view.findViewById<ImageView>(R.id.button_search).setOnClickListener {
-            val query = editTextSearch.text.toString().trim()
-            if (query != "" && query != currentQuery) {
-                showLoading()
-                presenter.searchNewMovie(query, view.context)
-                currentQuery = query
-            }
-        }
-
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (paginationEnabled) {
@@ -105,15 +97,17 @@ class SearchMoviesFragment : Fragment(), SearchMoviesView {
     private fun addOnEditTextListener(editText: EditText, context: Context) {
         val subject = PublishSubject.create<String>()
         editText.addTextChangedListener { str ->
-            if (str.isNullOrEmpty()) {
+            val query = str.toString().trim()
+            if (query.isNullOrEmpty()) {
                 hideAll()
             } else {
-                if (str.toString() != currentQuery) {
+                if (query != currentQuery) {
                     showLoading()
+                    textViewNotFound.visibility = View.GONE
+                    subject.onNext(query)
+                    currentQuery = query
                 }
             }
-            textViewNotFound.visibility = View.GONE
-            subject.onNext(str.toString().trim())
         }
         val disposable = subject
             .distinctUntilChanged()
@@ -121,7 +115,6 @@ class SearchMoviesFragment : Fragment(), SearchMoviesView {
             .subscribe { str ->
                 if (str.isNotEmpty()) {
                     presenter.searchNewMovie(str, context)
-                    currentQuery = str
                 }
             }
         compositeDisposable.add(disposable)
