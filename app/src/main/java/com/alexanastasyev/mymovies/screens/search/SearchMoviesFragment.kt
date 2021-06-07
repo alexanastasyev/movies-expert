@@ -17,6 +17,7 @@ import com.alexanastasyev.mymovies.internet.NetworkUtils
 import com.alexanastasyev.mymovies.screens.ActivityUtils
 import com.alexanastasyev.mymovies.screens.details.MovieDetailsActivity
 import com.alexanastasyev.mymovies.screens.movies.OnMovieClickListener
+import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 import java.util.concurrent.TimeUnit
@@ -158,7 +159,7 @@ class SearchMoviesFragment : Fragment(), SearchMoviesView {
     }
 
     override fun showError() {
-        Toast.makeText(view?.context, getString(R.string.error_search), Toast.LENGTH_SHORT).show()
+        Snackbar.make(recyclerView, getString(R.string.error_search), Snackbar.LENGTH_SHORT).show()
         startingProgressBar.visibility = View.GONE
     }
 

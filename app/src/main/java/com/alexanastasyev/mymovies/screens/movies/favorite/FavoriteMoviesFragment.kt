@@ -15,6 +15,7 @@ import com.alexanastasyev.mymovies.data.Movie
 import com.alexanastasyev.mymovies.screens.ActivityUtils
 import com.alexanastasyev.mymovies.screens.details.MovieDetailsActivity
 import com.alexanastasyev.mymovies.screens.movies.OnMovieClickListener
+import com.google.android.material.snackbar.Snackbar
 
 class FavoriteMoviesFragment : Fragment(), FavoriteMoviesView {
 
@@ -81,6 +82,6 @@ class FavoriteMoviesFragment : Fragment(), FavoriteMoviesView {
     }
 
     override fun showError() {
-        Toast.makeText(view?.context, getString(R.string.error_loading_movies), Toast.LENGTH_SHORT).show()
+        Snackbar.make(recyclerView, getString(R.string.error_loading_movies), Snackbar.LENGTH_SHORT).show()
     }
 }

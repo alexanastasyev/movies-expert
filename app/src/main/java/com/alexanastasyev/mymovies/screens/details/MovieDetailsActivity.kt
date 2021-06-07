@@ -15,6 +15,7 @@ import com.alexanastasyev.mymovies.data.Movie
 import com.alexanastasyev.mymovies.R
 import com.alexanastasyev.mymovies.screens.ActivityUtils
 import com.alexanastasyev.mymovies.screens.movies.OnMovieClickListener
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 
 class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
@@ -84,7 +85,7 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
     }
 
     private fun showMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Snackbar.make(recyclerView, message, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun showMovieInfo(movie: Movie) {

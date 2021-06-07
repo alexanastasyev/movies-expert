@@ -17,6 +17,7 @@ import com.alexanastasyev.mymovies.screens.details.MovieDetailsActivity
 import com.alexanastasyev.mymovies.screens.movies.OnMovieClickListener
 import com.alexanastasyev.mymovies.screens.movies.all.MovieAdapterAll
 import com.alexanastasyev.mymovies.screens.movies.all.MoviesView
+import com.google.android.material.snackbar.Snackbar
 
 class TopMoviesFragment : Fragment(), MoviesView {
 
@@ -95,7 +96,7 @@ class TopMoviesFragment : Fragment(), MoviesView {
     }
 
     override fun showError() {
-        Toast.makeText(view?.context, getString(R.string.error_loading_movies), Toast.LENGTH_SHORT).show()
+        Snackbar.make(recyclerView, getString(R.string.error_loading_movies), Snackbar.LENGTH_SHORT).show()
         hideLoading()
     }
 
