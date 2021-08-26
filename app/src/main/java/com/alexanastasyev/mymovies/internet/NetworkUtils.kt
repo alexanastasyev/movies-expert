@@ -1,5 +1,7 @@
 package com.alexanastasyev.mymovies.internet
 
+import android.util.Base64
+
 object NetworkUtils {
     const val SERVICE_BASE_URL = "https://api.themoviedb.org/3/"
 
@@ -10,7 +12,11 @@ object NetworkUtils {
     const val DEFAULT_LANGUAGE = "ru-RU"
     const val DEFAULT_REGION = "RU"
 
-    const val API_KEY = "d0c314843449830d4310a88c038551d5"
+    val API_KEY = "ZDBjMzE0ODQzNDQ5ODMwZDQzMTBhODhjMDM4NTUxZDU="
+    get() {
+        val byteArray = Base64.decode(field, Base64.URL_SAFE)
+        return String(byteArray)
+    }
 
     const val MIN_VOTES = 10
 
