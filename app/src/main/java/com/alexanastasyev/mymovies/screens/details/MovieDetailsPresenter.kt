@@ -37,7 +37,6 @@ class MovieDetailsPresenter(
             }, {
                 view.showErrorMovieInfo()
             })
-
         compositeDisposable.add((disposable))
     }
 
