@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alexanastasyev.mymovies.data.Movie
 import com.alexanastasyev.mymovies.R
+import com.alexanastasyev.mymovies.internet.ads.AdsManager
 import com.alexanastasyev.mymovies.screens.ActivityUtils
 import com.alexanastasyev.mymovies.screens.movies.OnMovieClickListener
 import com.google.android.material.snackbar.Snackbar
@@ -54,6 +55,8 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
         setOnBackArrowExit()
         setOnHomeExit()
         setOnStarClickListener()
+
+        AdsManager.loadBanner(findViewById(R.id.banner_ads_details), this)
     }
 
     private fun showLoadingSimilar() {
