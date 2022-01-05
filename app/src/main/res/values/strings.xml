@@ -30,6 +30,6 @@
     <string name="error_loading_similar_movies">Ошибка загрузки списка похожих фильмов!</string>
     <string name="similar_movies_not_found">Фильмы не найдены</string>
 
-    <string name="admob_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
-    <string name="banner_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_id">ca-app-pub-8259637400124007~6527750917</string>
+    <string name="banner_id">ca-app-pub-8259637400124007/6144607536</string>
 </resources>
