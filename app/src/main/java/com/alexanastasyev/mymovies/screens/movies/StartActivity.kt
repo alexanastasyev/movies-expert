@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.alexanastasyev.mymovies.R
+import com.alexanastasyev.mymovies.internet.ads.AdsManager
 import com.alexanastasyev.mymovies.screens.ActivityUtils
 import com.alexanastasyev.mymovies.screens.movies.all.AllMoviesFragment
 import com.alexanastasyev.mymovies.screens.movies.favorite.FavoriteMoviesFragment
@@ -52,6 +53,8 @@ class StartActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             showAllMoviesFragment()
         }
+
+        AdsManager.loadBanner(findViewById(R.id.banner_ads), this)
     }
 
     override fun onResume() {

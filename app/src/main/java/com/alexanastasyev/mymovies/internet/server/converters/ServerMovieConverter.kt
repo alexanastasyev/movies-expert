@@ -1,4 +1,4 @@
-package com.alexanastasyev.mymovies.internet.converters
+package com.alexanastasyev.mymovies.internet.server.converters
 
 import android.content.Context
 import androidx.room.Room.databaseBuilder
@@ -6,9 +6,9 @@ import com.alexanastasyev.mymovies.data.Genre
 import com.alexanastasyev.mymovies.data.Movie
 import com.alexanastasyev.mymovies.database.AppDatabase
 import com.alexanastasyev.mymovies.database.DatabaseUtils
-import com.alexanastasyev.mymovies.internet.NetworkUtils
-import com.alexanastasyev.mymovies.internet.responses.GetMovieDetailsResponse
-import com.alexanastasyev.mymovies.internet.responses.ServerMovieModel
+import com.alexanastasyev.mymovies.internet.server.NetworkUtils
+import com.alexanastasyev.mymovies.internet.server.responses.GetMovieDetailsResponse
+import com.alexanastasyev.mymovies.internet.server.responses.ServerMovieModel
 
 object ServerMovieConverter {
     private const val RATING_FACTOR = 10

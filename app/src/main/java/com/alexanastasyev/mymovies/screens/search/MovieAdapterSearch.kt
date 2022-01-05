@@ -18,7 +18,7 @@ import com.alexanastasyev.mymovies.data.MoviesUtils.LOW_RATING
 import com.alexanastasyev.mymovies.data.MoviesUtils.MEDIUM_RATING
 import com.alexanastasyev.mymovies.data.MoviesUtils.ULTRA_RATING
 import com.alexanastasyev.mymovies.data.MoviesUtils.ZERO_RATING
-import com.alexanastasyev.mymovies.internet.NetworkUtils
+import com.alexanastasyev.mymovies.internet.server.NetworkUtils
 import com.alexanastasyev.mymovies.screens.movies.OnMovieClickListener
 import com.squareup.picasso.Picasso
 

@@ -1,8 +1,8 @@
-package com.alexanastasyev.mymovies.internet.responses
+package com.alexanastasyev.mymovies.internet.server.responses
 
 import com.google.gson.annotations.SerializedName
 
-class ServerMovieModel(
+class GetMovieDetailsResponse(
     @SerializedName("id")
     val id: Int,
 
@@ -27,6 +27,6 @@ class ServerMovieModel(
     @SerializedName("backdrop_path")
     val bigPicturePath: String,
 
-    @SerializedName("genre_ids")
-    val genreIds: List<Int>
+    @SerializedName("genres")
+    val genres: List<ServerGenreModel>
 )

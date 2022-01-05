@@ -8,8 +8,18 @@
     android:background="@color/medium_blue">
 
     <FrameLayout
-        android:id="@+id/fragment_container"
+        android:id="@+id/banner_ads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp"
+        android:background="@color/dark_blue"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fragment_container"/>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        app:layout_constraintTop_toBottomOf="@id/banner_ads"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="0dp" />

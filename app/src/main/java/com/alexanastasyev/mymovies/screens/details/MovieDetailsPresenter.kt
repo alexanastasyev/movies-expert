@@ -6,7 +6,7 @@ import com.alexanastasyev.mymovies.data.Movie
 import com.alexanastasyev.mymovies.database.AppDatabase
 import com.alexanastasyev.mymovies.database.DatabaseUtils
 import com.alexanastasyev.mymovies.database.converter.DatabaseMovieConverter
-import com.alexanastasyev.mymovies.internet.MovieServer
+import com.alexanastasyev.mymovies.internet.server.MovieServer
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

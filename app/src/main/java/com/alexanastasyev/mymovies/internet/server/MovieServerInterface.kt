@@ -1,7 +1,7 @@
-package com.alexanastasyev.mymovies.internet
+package com.alexanastasyev.mymovies.internet.server
 
-import com.alexanastasyev.mymovies.internet.responses.GetMovieDetailsResponse
-import com.alexanastasyev.mymovies.internet.responses.GetMoviesResponse
+import com.alexanastasyev.mymovies.internet.server.responses.GetMovieDetailsResponse
+import com.alexanastasyev.mymovies.internet.server.responses.GetMoviesResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -41,9 +41,9 @@ interface MovieServerInterface {
 
     @GET("movie/{movie_id}/similar")
     fun getSimilarMovies(
-            @Path("movie_id") movieId: Int,
-            @Query("api_key") apiKey: String = NetworkUtils.API_KEY,
-            @Query("language") language: String = NetworkUtils.DEFAULT_LANGUAGE
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String = NetworkUtils.API_KEY,
+        @Query("language") language: String = NetworkUtils.DEFAULT_LANGUAGE
     ): Call<GetMoviesResponse>
 
     @GET("search/movie")

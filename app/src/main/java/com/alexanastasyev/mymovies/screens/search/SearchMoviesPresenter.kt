@@ -1,8 +1,8 @@
 package com.alexanastasyev.mymovies.screens.search
 
 import android.content.Context
-import com.alexanastasyev.mymovies.internet.MovieServer
-import com.alexanastasyev.mymovies.internet.NetworkUtils
+import com.alexanastasyev.mymovies.internet.server.MovieServer
+import com.alexanastasyev.mymovies.internet.server.NetworkUtils
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

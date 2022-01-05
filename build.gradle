@@ -35,4 +35,5 @@ ext {
     rxAndroidVersion = "2.1.1"
     picassoVersion = "2.71828"
     roomVersion = "2.4.0"
+    admobVersion = "20.5.0"
 }

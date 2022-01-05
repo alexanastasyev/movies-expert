@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alexanastasyev.mymovies.R
 import com.alexanastasyev.mymovies.data.Movie
-import com.alexanastasyev.mymovies.internet.NetworkUtils
+import com.alexanastasyev.mymovies.internet.server.NetworkUtils
 import com.alexanastasyev.mymovies.screens.ActivityUtils
 import com.alexanastasyev.mymovies.screens.details.MovieDetailsActivity
 import com.alexanastasyev.mymovies.screens.movies.OnMovieClickListener

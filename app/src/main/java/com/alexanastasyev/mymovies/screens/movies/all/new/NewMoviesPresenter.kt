@@ -1,7 +1,7 @@
 package com.alexanastasyev.mymovies.screens.movies.all.new
 
 import android.content.Context
-import com.alexanastasyev.mymovies.internet.MovieServer
+import com.alexanastasyev.mymovies.internet.server.MovieServer
 import com.alexanastasyev.mymovies.screens.movies.all.MoviesView
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers

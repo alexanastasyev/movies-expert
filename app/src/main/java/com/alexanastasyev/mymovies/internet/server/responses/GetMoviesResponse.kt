@@ -1,4 +1,4 @@
-package com.alexanastasyev.mymovies.internet.responses
+package com.alexanastasyev.mymovies.internet.server.responses
 
 import com.google.gson.annotations.SerializedName
 

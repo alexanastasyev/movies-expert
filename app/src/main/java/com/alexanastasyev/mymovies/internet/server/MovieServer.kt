@@ -1,8 +1,8 @@
-package com.alexanastasyev.mymovies.internet
+package com.alexanastasyev.mymovies.internet.server
 
 import android.content.Context
 import com.alexanastasyev.mymovies.data.Movie
-import com.alexanastasyev.mymovies.internet.converters.ServerMovieConverter
+import com.alexanastasyev.mymovies.internet.server.converters.ServerMovieConverter
 import java.util.*
 
 object MovieServer {

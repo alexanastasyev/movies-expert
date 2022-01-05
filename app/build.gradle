@@ -53,6 +53,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     implementation "com.squareup.picasso:picasso:$picassoVersion"
+    implementation "com.google.android.gms:play-services-ads:$admobVersion"
 
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"

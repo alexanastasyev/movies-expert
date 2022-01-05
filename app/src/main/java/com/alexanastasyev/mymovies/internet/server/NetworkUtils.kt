@@ -1,4 +1,4 @@
-package com.alexanastasyev.mymovies.internet
+package com.alexanastasyev.mymovies.internet.server
 
 import android.util.Base64
 
