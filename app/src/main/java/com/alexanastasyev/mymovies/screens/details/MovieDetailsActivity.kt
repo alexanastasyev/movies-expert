@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -56,7 +55,7 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
         setOnHomeExit()
         setOnStarClickListener()
 
-        AdsManager.loadBanner(findViewById(R.id.banner_ads_details), this)
+        AdsManager.loadBannerIfAvailable(findViewById(R.id.banner_ads_details), this)
     }
 
     private fun showLoadingSimilar() {

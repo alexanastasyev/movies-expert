@@ -36,4 +36,6 @@ ext {
     picassoVersion = "2.71828"
     roomVersion = "2.4.0"
     admobVersion = "20.5.0"
+    billingVersion = "4.0.0"
+    coroutineVersion = "1.5.2"
 }

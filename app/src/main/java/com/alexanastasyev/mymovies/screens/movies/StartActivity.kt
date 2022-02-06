@@ -2,13 +2,18 @@ package com.alexanastasyev.mymovies.screens.movies
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.alexanastasyev.mymovies.R
 import com.alexanastasyev.mymovies.internet.ads.AdsManager
+import com.alexanastasyev.mymovies.internet.inapp.BillingManager
 import com.alexanastasyev.mymovies.screens.ActivityUtils
+import com.alexanastasyev.mymovies.screens.buy.BuyActivity
 import com.alexanastasyev.mymovies.screens.movies.all.AllMoviesFragment
 import com.alexanastasyev.mymovies.screens.movies.favorite.FavoriteMoviesFragment
 import com.alexanastasyev.mymovies.screens.search.SearchMoviesFragment
@@ -26,11 +31,15 @@ class StartActivity : AppCompatActivity() {
     private val favoriteMoviesFragment = FavoriteMoviesFragment()
     private val searchMoviesFragment = SearchMoviesFragment()
 
+    private lateinit var iconBuyNoAds: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
         disableNightMode()
+
+        iconBuyNoAds = findViewById(R.id.no_ads)
 
         findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -54,11 +63,17 @@ class StartActivity : AppCompatActivity() {
             showAllMoviesFragment()
         }
 
-        AdsManager.loadBanner(findViewById(R.id.banner_ads), this)
+        BillingManager.init(this)
+        loadAds()
+        loadBuyingIcon()
     }
 
     override fun onResume() {
         ActivityUtils.closeAllActivityDetails = false
+        if (AdsManager.adsAvailable == false) {
+            iconBuyNoAds.visibility = View.INVISIBLE
+            findViewById<FrameLayout>(R.id.banner_ads).removeAllViews()
+        }
         super.onResume()
     }
 
@@ -123,5 +138,28 @@ class StartActivity : AppCompatActivity() {
         if (fragmentToHide != null) {
             fragmentTransaction.hide(fragmentToHide)
         }
+    }
+
+    private fun loadAds() {
+        AdsManager.loadBannerIfAvailable(findViewById(R.id.banner_ads), this)
+    }
+
+    private fun loadBuyingIcon() {
+        AdsManager.checkAdsAvailable { adsAvailable ->
+            if (adsAvailable) {
+                iconBuyNoAds.visibility = View.VISIBLE
+                iconBuyNoAds.setOnClickListener {
+                    val intent = Intent(this, BuyActivity::class.java)
+                    this.startActivity(intent)
+                }
+            } else {
+                iconBuyNoAds.visibility = View.INVISIBLE
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        AdsManager.disposeAll()
+        super.onDestroy()
     }
 }

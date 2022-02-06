@@ -29,6 +29,9 @@
     <string name="similar_movies">Похожие фильмы:</string>
     <string name="error_loading_similar_movies">Ошибка загрузки списка похожих фильмов!</string>
     <string name="similar_movies_not_found">Фильмы не найдены</string>
+    <string name="disable_all_ads">Отключить всю рекламу раз и навсегда!</string>
+    <string name="disable_ads">Отключить рекламу</string>
+    <string name="disclaimer">При нажатии на кнопку с вас спишется %s за отключение всей рекламы в приложении</string>
 
     <string name="admob_id">ca-app-pub-8259637400124007~6527750917</string>
     <string name="banner_id">ca-app-pub-8259637400124007/6144607536</string>
